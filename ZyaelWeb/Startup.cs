@@ -71,7 +71,7 @@ namespace ZyaelWeb
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Login}/{action=Index}/{id?}");
+                    pattern: "{controller=AdminLogin}/{action=AdminLogin}/{id?}");
             });
         }
     }

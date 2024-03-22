@@ -33,7 +33,7 @@ namespace ZyaelWeb_DAL.Logins
             try
             {
                 var Connection = new SqlConnection(_config.GetConnectionString("DefautConnection"));
-                using (SqlConnection con= Connection)
+                using (SqlConnection con= GetConnection())
                 {
                     con.Open();
                     var Param =

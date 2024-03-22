@@ -36,7 +36,7 @@ namespace ZyaelWeb.Controllers.Logins
                 {
                     new Claim(ClaimTypes.Actor,Convert.ToString(result.AdminUserID)),
                     //to avoid error
-                    new Claim(ClaimTypes.Sid,Convert.ToString(result.VendorUserID)),
+                    //new Claim(ClaimTypes.Sid,Convert.ToString(result.VendorUserID)),
                     new Claim(ClaimTypes.Name,Convert.ToString(result.Role)),
 
                 };
