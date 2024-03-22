@@ -29,5 +29,10 @@ namespace ZyaelWeb.Controllers.Admins
         {
             return View();
         }
+
+        public IActionResult VendorsCredentialGrid()
+        {
+            return View();
+        }
     }
 }
