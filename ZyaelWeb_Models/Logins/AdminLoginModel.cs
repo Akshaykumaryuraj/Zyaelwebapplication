@@ -16,4 +16,12 @@ namespace ZyaelWeb_Models.Logins
         public string Email { get; set; }
         public string Password { get; set; }
     }
+    public class VendorsCredentialModel
+    {
+        public int TotalrowCount { get; set; }
+        public string Email { get; set; }
+        public string UserName { get; set; }
+        public string status { get; set; }
+    }
+        
 }
