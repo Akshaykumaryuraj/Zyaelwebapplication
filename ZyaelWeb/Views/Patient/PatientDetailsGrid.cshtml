@@ -1,0 +1,666 @@
+﻿@{
+    Layout = null;
+}
+
+
+
+<!DOCTYPE html>
+
+<html lang="en" class="light-style layout-navbar-fixed layout-menu-fixed layout-compact " dir="ltr" data-theme="theme-default" data-assets-path="../../assets/" data-template="vertical-menu-template">
+
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+
+    <title>Patient Details | Zyael </title>
+
+
+    <meta name="description" content="Most Powerful &amp; Comprehensive Bootstrap 5 HTML Admin Dashboard Template built for developers!" />
+    <meta name="keywords" content="dashboard, bootstrap 5 dashboard, bootstrap 5 design, bootstrap 5">
+    <!-- Canonical SEO -->
+    <link rel="canonical" href="https://themeselection.com/item/sneat-aspnet-core-mvc-admin-template/">
+
+
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="https://demos.themeselection.com/sneat-aspnet-core-mvc-admin-template/assets/img/favicon/favicon.ico" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com/">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&amp;display=swap" rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="~/assets/vendor/fonts/boxicons.css" />
+    <link rel="stylesheet" href="~/assets/vendor/fonts/fontawesome.css" />
+    <link rel="stylesheet" href="~/assets/vendor/fonts/flag-icons.css" />
+
+    <!-- Core CSS -->
+    <link rel="stylesheet" href="~/assets/vendor/css/rtl/core.css" class="template-customizer-core-css" />
+    <link rel="stylesheet" href="~/assets/vendor/css/rtl/theme-default.css" class="template-customizer-theme-css" />
+    <link rel="stylesheet" href="~/assets/css/demo.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+    <!-- Vendors CSS -->
+    <link rel="stylesheet" href="../../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
+    <link rel="stylesheet" href="../../assets/vendor/libs/typeahead-js/typeahead.css" />
+    <link rel="stylesheet" href="~/assets/vendor/libs/datatables-bs5/datatables.bootstrap5.css">
+    <link rel="stylesheet" href="~/assets/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.css">
+    <link rel="stylesheet" href="~/assets/vendor/libs/datatables-select-bs5/select.bootstrap5.css">
+    <link rel="stylesheet" href="~/assets/vendor/libs/datatables-buttons-bs5/buttons.bootstrap5.css">
+    <link rel="stylesheet" href="../../assets/vendor/libs/flatpickr/flatpickr.css" />
+    <!-- Row Group CSS -->
+    <link rel="stylesheet" href="~/assets/vendor/libs/datatables-rowgroup-bs5/rowgroup.bootstrap5.css">
+
+
+    <!-- Page CSS -->
+    <!-- Helpers -->
+    <script src="~/assets/vendor/js/helpers.js"></script>
+
+    <script src="~/assets/vendor/js/template-customizer.js"></script>
+    <script src="~/assets/js/config.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+        .dropbtn {
+            background-color: #04AA6D;
+            color: white;
+            padding: 16px;
+            font-size: 16px;
+            border: none;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f1f1f1;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+            .dropdown-content a {
+                color: black;
+                padding: 12px 16px;
+                text-decoration: none;
+                display: block;
+            }
+
+                .dropdown-content a:hover {
+                    background-color: #ddd;
+                }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown:hover .dropbtn {
+            background-color: #3e8e41;
+        }
+    </style>
+
+</head>
+
+<body>
+
+
+
+    <!-- Layout wrapper -->
+    <div class="layout-wrapper layout-content-navbar  ">
+        <div class="layout-container">
+
+
+
+            <!-- Menu -->
+
+            <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
+
+
+                <div class="app-brand demo ">
+                    <a href="index.html" class="app-brand-link">
+                        <span class="app-brand-logo demo">
+
+                        </span>
+                        <span class="app-brand-text demo menu-text fw-bold ms-2">Zyael</span>
+                    </a>
+
+                    <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto">
+                        <i class="bx bx-chevron-left bx-sm align-middle"></i>
+                    </a>
+                </div>
+
+                <div class="menu-inner-shadow"></div>
+
+
+
+                <ul class="menu-inner py-1">
+                    <!-- Dashboards -->
+                    <li class="menu-item active open">
+                        <a href="/Hospitals/HospitalDashBoard" class="menu-link menu-toggle">
+                            <i class="menu-icon tf-icons bx bx-home-circle"></i>
+                            <div class="text-truncate bold" data-i18n="Dashboards">Dashboards</div>
+                        </a>
+                        <ul class="menu-sub">
+                            <li class="menu-item">
+                                <a href="/Hospitals/HospitalDashBoard" class="menu-link">
+                                    <div class="text-truncate" data-i18n="Home">Home</div>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="#" class="menu-link">
+                                    <div class="text-truncate" data-i18n="Appointments">Appointments</div>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="/InternalDoctor/InternalDoctorsGrid" class="menu-link">
+                                    <div class="text-truncate" data-i18n="Doctors Details">Doctors Details</div>
+                                </a>
+                            </li>
+                            <li class="menu-item active">
+                                <a href="#" class="menu-link">
+                                    <div class="text-truncate" data-i18n="Patients Details">Patients Details</div>
+                                </a>
+                            </li>
+                            <li class="menu-item ">
+                                <a href="#" class="menu-link">
+                                    <div class="text-truncate" data-i18n="Reports">Reports</div>
+                                </a>
+                            </li>
+
+
+
+                        </ul>
+                    </li>
+
+
+                    <!-- Charts & Maps -->
+                    <li class="menu-header small text-uppercase">
+                        <span class="menu-header-text" data-i18n="Charts & Maps">Charts &amp; Maps</span>
+                    </li>
+                    <li class="menu-item">
+                        <a href="javascript:void(0);" class="menu-link menu-toggle">
+                            <i class="menu-icon tf-icons bx bx-chart"></i>
+                            <div class="text-truncate" data-i18n="Charts">Charts</div>
+                        </a>
+                        <ul class="menu-sub">
+                            <li class="menu-item">
+                                <a href="#" class="menu-link">
+                                    <div class="text-truncate" data-i18n="Apex Charts">Apex Charts</div>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="#" class="menu-link">
+                                    <div class="text-truncate" data-i18n="ChartJS">ChartJS</div>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    @*  <li class="menu-item">
+                    <a href="maps-leaflet.html" class="menu-link">
+                    <i class="menu-icon tf-icons bx bx-map-alt"></i>
+                    <div class="text-truncate" data-i18n="Leaflet Maps">Leaflet Maps</div>
+                    </a>
+                    </li> *@
+
+
+                </ul>
+
+
+
+            </aside>
+            <!-- / Menu -->
+            <!-- Layout container -->
+            <div class="layout-page">
+
+
+
+
+
+                <!-- Navbar -->
+
+
+
+
+                <nav class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme" id="layout-navbar">
+
+
+
+
+
+
+
+
+
+
+
+                    <div class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0   d-xl-none ">
+                        <a class="nav-item nav-link px-0 me-xl-4" href="javascript:void(0)">
+                            <i class="bx bx-menu bx-sm"></i>
+                        </a>
+                    </div>
+
+
+                    <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
+
+
+
+
+                        <!-- Search -->
+                        <div class="navbar-nav align-items-center">
+                            <div class="nav-item navbar-search-wrapper mb-0">
+                                <a class="nav-item nav-link search-toggler px-0" href="javascript:void(0);">
+                                    <i class="bx bx-search bx-sm"></i>
+                                    <span class="d-none d-md-inline-block text-muted">Search (Ctrl+/)</span>
+                                </a>
+                            </div>
+                        </div>
+                        <!-- /Search -->
+
+
+
+
+
+                        <ul class="navbar-nav flex-row align-items-center ms-auto">
+
+
+
+
+                            <!-- Quick links  -->
+                            <li class="nav-item dropdown-shortcuts navbar-dropdown dropdown me-2 me-xl-0">
+                                <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
+                                    <i class='bx bx-grid-alt bx-sm'></i>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-end py-0">
+                                    <div class="dropdown-menu-header border-bottom">
+                                        <div class="dropdown-header d-flex align-items-center py-3">
+                                            <h5 class="text-body mb-0 me-auto">Shortcuts</h5>
+                                            <a href="javascript:void(0)" class="dropdown-shortcuts-add text-body" data-bs-toggle="tooltip" data-bs-placement="top" title="Add shortcuts"><i class="bx bx-sm bx-plus-circle"></i></a>
+                                        </div>
+                                    </div>
+                                    <div class="dropdown-shortcuts-list scrollable-container">
+                                        <div class="row row-bordered overflow-visible g-0">
+                                            <div class="dropdown-shortcuts-item col">
+                                                <span class="dropdown-shortcuts-icon bg-label-secondary rounded-circle mb-2">
+                                                    <i class="bx bx-calendar fs-4"></i>
+                                                </span>
+                                                <a href="#" class="stretched-link">Calendar</a>
+                                                <small class="text-muted mb-0">Appointments</small>
+                                            </div>
+
+                                        </div>
+                                        <div class="row row-bordered overflow-visible g-0">
+
+                                            <div class="dropdown-shortcuts-item col">
+                                                <span class="dropdown-shortcuts-icon bg-label-secondary rounded-circle mb-2">
+                                                    <i class="bx bx-check-shield fs-4"></i>
+                                                </span>
+                                                <a href="#" class="stretched-link">Role Management</a>
+                                                <small class="text-muted mb-0">Permission</small>
+                                            </div>
+                                        </div>
+                                        <div class="row row-bordered overflow-visible g-0">
+                                            <div class="dropdown-shortcuts-item col">
+                                                <span class="dropdown-shortcuts-icon bg-label-secondary rounded-circle mb-2">
+                                                    <i class="bx bx-pie-chart-alt-2 fs-4"></i>
+                                                </span>
+                                                <a href="/Hospitals/HospitalProfile" class="stretched-link">Dashboard</a>
+                                                <small class="text-muted mb-0">Hospital Profile</small>
+                                            </div>
+                                            <div class="dropdown-shortcuts-item col">
+                                                <span class="dropdown-shortcuts-icon bg-label-secondary rounded-circle mb-2">
+                                                    <i class="bx bx-cog fs-4"></i>
+                                                </span>
+                                                <a href="#" class="stretched-link">Setting</a>
+                                                <small class="text-muted mb-0">Account Settings</small>
+                                            </div>
+                                        </div>
+                                        <div class="row row-bordered overflow-visible g-0">
+                                            <div class="dropdown-shortcuts-item col">
+                                                <span class="dropdown-shortcuts-icon bg-label-secondary rounded-circle mb-2">
+                                                    <i class="bx bx-help-circle fs-4"></i>
+                                                </span>
+                                                <a href="#" class="stretched-link">FAQs</a>
+                                                <small class="text-muted mb-0">FAQs & Articles</small>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <!-- Quick links -->
+                            <!-- Notification -->
+                            <li class="nav-item dropdown-notifications navbar-dropdown dropdown me-3 me-xl-1">
+                                <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
+                                    <i class="bx bx-bell bx-sm"></i>
+                                    <span class="badge bg-danger rounded-pill badge-notifications">1</span>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end py-0">
+                                    <li class="dropdown-menu-header border-bottom">
+                                        <div class="dropdown-header d-flex align-items-center py-3">
+                                            <h5 class="text-body mb-0 me-auto">Notification</h5>
+                                            <a href="javascript:void(0)" class="dropdown-notifications-all text-body" data-bs-toggle="tooltip" data-bs-placement="top" title="Mark all as read"><i class="bx fs-4 bx-envelope-open"></i></a>
+                                        </div>
+                                    </li>
+                                    <li class="dropdown-notifications-list scrollable-container">
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item list-group-item-action dropdown-notifications-item">
+                                                <div class="d-flex">
+                                                    <div class="flex-shrink-0 me-3">
+                                                        <div class="avatar">
+                                                            <img src="~/assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle">
+                                                        </div>
+                                                    </div>
+                                                    <div class="flex-grow-1">
+                                                        <h6 class="mb-1">Congratulation Team 🎉</h6>
+                                                        <p class="mb-0">Won the monthly best seller gold badge</p>
+                                                        <small class="text-muted">1h ago</small>
+                                                    </div>
+                                                    <div class="flex-shrink-0 dropdown-notifications-actions">
+                                                        <a href="#" class="dropdown-notifications-read"><span class="badge badge-dot"></span></a>
+                                                        <a href="#" class="dropdown-notifications-archive"><span class="bx bx-x"></span></a>
+                                                    </div>
+                                                </div>
+                                            </li>
+
+
+
+
+                                        </ul>
+                                    </li>
+                                    <li class="dropdown-menu-footer border-top p-3">
+                                        <button class="btn btn-primary text-uppercase w-100">view all notifications</button>
+                                    </li>
+                                </ul>
+                            </li>
+                            <!--/ Notification -->
+                            <!-- UserDropdown -->
+                            <!-- User -->
+                            <li class="nav-item navbar-dropdown dropdown-user dropdown">
+                                <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
+                                    <div class="avatar avatar-online">
+                                        <img src="~/assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle">
+                                    </div>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end">
+                                    <li>
+                                        <a class="dropdown-item" href="pages-account-settings-account.html">
+                                            <div class="d-flex">
+                                                <div class="flex-shrink-0 me-3">
+                                                    <div class="avatar avatar-online">
+                                                        <img src="~/assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle">
+                                                    </div>
+                                                </div>
+                                                <div class="flex-grow-1">
+                                                    <span class="fw-medium d-block">John Doe</span>
+                                                    <small class="text-muted">Admin</small>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <div class="dropdown-divider"></div>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="/Hospitals/HospitalProfile">
+                                            <i class="bx bx-user me-2"></i>
+                                            <span class="align-middle">My Profile</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="#">
+                                            <i class="bx bx-cog me-2"></i>
+                                            <span class="align-middle">Settings</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="#">
+                                            <span class="d-flex align-items-center align-middle">
+                                                <i class="flex-shrink-0 bx bx-credit-card me-2"></i>
+                                                <span class="flex-grow-1 align-middle">Billing</span>
+                                                <span class="flex-shrink-0 badge badge-center rounded-pill bg-danger w-px-20 h-px-20">4</span>
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <div class="dropdown-divider"></div>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="#">
+                                            <i class="bx bx-help-circle me-2"></i>
+                                            <span class="align-middle">FAQ</span>
+                                        </a>
+                                    </li>
+                                    @*    <li>
+                                    <a class="dropdown-item" href="pages-pricing.html">
+                                    <i class="bx bx-dollar me-2"></i>
+                                    <span class="align-middle">Pricing</span>
+                                    </a>
+                                    </li> *@
+                                    <li>
+                                        <div class="dropdown-divider"></div>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="auth-login-cover.html" target="_blank">
+                                            <i class="bx bx-power-off me-2"></i>
+                                            <span class="align-middle">Log Out</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <!--/ User -->
+                        </ul>
+                    </div>
+
+
+                    <!-- Search Small Screens -->
+                    <div class="navbar-search-wrapper search-input-wrapper  d-none">
+                        <input type="text" class="form-control search-input container-xxl border-0" placeholder="Search..." aria-label="Search...">
+                        <i class="bx bx-x bx-sm search-toggler cursor-pointer"></i>
+                    </div>
+
+
+                </nav>
+
+
+
+                <!-- / Navbar -->
+                <!-- Content wrapper -->
+                <div class="content-wrapper">
+
+                    <!-- Content -->
+
+                    <div class="container-xxl flex-grow-1 container-p-y">
+
+
+                        <h4 class="py-3 mb-4">
+                            <span class="text-muted fw-light">Details /</span> Patient Details
+
+                            <div class="btn-group" id="hover-dropdown-demo">
+                                <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" data-trigger="hover">Select Patient Type</button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="javascript:void(0);">Online</a></li>
+                                    <li><a class="dropdown-item" href="javascript:void(0);">OffLine</a></li>
+                                  
+                                </ul>
+                            </div>
+                        </h4>
+
+                        <a class="btn btn-primary" href="/Patient/PatientRecords" role="button">ADD</a>
+
+
+                        <!-- DataTable with Buttons -->
+                        <div class="card">
+                            <div class="card-datatable table-responsive">
+
+                                <table class="datatables-basic table border-top" id="PatientDetailsGrid">
+                                    <thead>
+                                   
+                                        <tr>
+                                            <th> # </th>
+                                            <th>Patient Name </th>
+                                            <th>Patient Reg.Number </th>
+                                            <th>Patient Phone Number </th>
+                                            <th> Status </th>
+                                            <th> Action </th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="myModal" role="dialog">
+                            <div class="modal-dialog">
+
+                                <!-- Modal content-->
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        <h4 class="modal-title">Modal Header</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>Some text in the modal.</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <hr class="my-5">
+
+                        <!-- Modal to add new record -->
+                        <div class="offcanvas offcanvas-end" id="add-new-record">
+                            <div class="offcanvas-header border-bottom">
+                                <h5 class="offcanvas-title" id="exampleModalLabel">New Record</h5>
+                                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                            </div>
+                            <div class="offcanvas-body flex-grow-1">
+                                <form class="add-new-record pt-0 row g-2" id="form-add-new-record" onsubmit="return false">
+                                    <div class="col-sm-12">
+                                        <label class="form-label" for="basicFullname">Full Name</label>
+                                        <div class="input-group input-group-merge">
+                                            <span id="basicFullname2" class="input-group-text"><i class="bx bx-user"></i></span>
+                                            <input type="text" id="basicFullname" class="form-control dt-full-name" name="basicFullname" placeholder="John Doe" aria-label="John Doe" aria-describedby="basicFullname2" />
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <label class="form-label" for="basicPost">Post</label>
+                                        <div class="input-group input-group-merge">
+                                            <span id="basicPost2" class="input-group-text"><i class='bx bxs-briefcase'></i></span>
+                                            <input type="text" id="basicPost" name="basicPost" class="form-control dt-post" placeholder="Web Developer" aria-label="Web Developer" aria-describedby="basicPost2" />
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <label class="form-label" for="basicEmail">Email</label>
+                                        <div class="input-group input-group-merge">
+                                            <span class="input-group-text"><i class="bx bx-envelope"></i></span>
+                                            <input type="text" id="basicEmail" name="basicEmail" class="form-control dt-email" placeholder="john.doe@example.com" aria-label="john.doe@example.com" />
+                                        </div>
+                                        <div class="form-text">
+                                            You can use letters, numbers & periods
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <label class="form-label" for="basicDate">Joining Date</label>
+                                        <div class="input-group input-group-merge">
+                                            <span id="basicDate2" class="input-group-text"><i class='bx bx-calendar'></i></span>
+                                            <input type="text" class="form-control dt-date" id="basicDate" name="basicDate" aria-describedby="basicDate2" placeholder="MM/DD/YYYY" aria-label="MM/DD/YYYY" />
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <label class="form-label" for="basicSalary">Salary</label>
+                                        <div class="input-group input-group-merge">
+                                            <span id="basicSalary2" class="input-group-text"><i class='bx bx-dollar'></i></span>
+                                            <input type="number" id="basicSalary" name="basicSalary" class="form-control dt-salary" placeholder="12000" aria-label="12000" aria-describedby="basicSalary2" />
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <button type="submit" class="btn btn-primary data-submit me-sm-3 me-1">Submit</button>
+                                        <button type="reset" class="btn btn-outline-secondary" data-bs-dismiss="offcanvas">Cancel</button>
+                                    </div>
+                                </form>
+
+                            </div>
+                        </div>
+                        <!--/ DataTable with Buttons -->
+
+                    </div>
+                    <!-- / Content -->
+                    <!-- Footer -->
+                    <footer class="content-footer footer bg-footer-theme">
+                        <div class="container-xxl d-flex flex-wrap justify-content-between py-2 flex-md-row flex-column">
+                            <div class="mb-2 mb-md-0">
+                                © <script>document.write(new Date().getFullYear())</script>, made with ❤️ by <a href="https://orbfocushealthcare.com/" target="_blank" class="footer-link fw-medium">Orbfocus</a>
+                            </div>
+
+                        </div>
+                    </footer>
+                    <!-- / Footer -->
+
+
+                    <div class="content-backdrop fade"></div>
+                </div>
+                <!-- Content wrapper -->
+            </div>
+            <!-- / Layout page -->
+        </div>
+
+
+
+        <!-- Overlay -->
+        <div class="layout-overlay layout-menu-toggle"></div>
+
+
+        <!-- Drag Target Area To SlideIn Menu On Small Screens -->
+        <div class="drag-target"></div>
+
+    </div>
+    <!-- / Layout wrapper -->
+    <!-- Core JS -->
+    <!-- build:js assets/vendor/js/core.js -->
+
+    <script src="~/assets/vendor/libs/jquery/jquery.js"></script>
+    <script src="~/assets/vendor/libs/popper/popper.js"></script>
+    <script src="~/assets/vendor/js/bootstrap.js"></script>
+    <script src="~/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+    <script src="~/assets/vendor/libs/hammer/hammer.js"></script>
+    <script src="~/assets/vendor/libs/i18n/i18n.js"></script>
+    <script src="~/assets/vendor/libs/typeahead-js/typeahead.js"></script>
+    <script src="~/assets/vendor/js/menu.js"></script>
+
+    <script src="~/assets/vendor/libs/datatables-bs5/datatables-bootstrap5.js"></script>
+
+    <!-- Flat Picker -->
+    <script src="~/assets/vendor/libs/moment/moment.js"></script>
+    <script src="~/assets/vendor/libs/flatpickr/flatpickr.js"></script>
+
+
+    <!-- Main JS -->
+    <script src="~/assets/js/main.js"></script>
+
+
+    <!-- Page JS -->
+    <script src="~/datatables.net-bs4/js/datatables.responsive.min.js"></script>
+
+    <script src="~/datatables.net/js/jquery.datatables.min.js"></script>
+    <script src="~/assets/js/tables-datatables-basic.js"></script>
+
+    <script src="~/assets/js/gridjs/PatientDetailsGrid.js"></script>
+
+</body>
+
+
+</html>
+

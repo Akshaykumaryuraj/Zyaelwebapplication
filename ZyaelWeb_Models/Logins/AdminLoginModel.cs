@@ -15,6 +15,10 @@ namespace ZyaelWeb_Models.Logins
         public string Role { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
+        public string Vendor { get; set; }
+        public bool status { get; set; }
+
+
     }
     public class VendorsCredentialModel
     {
@@ -22,6 +26,9 @@ namespace ZyaelWeb_Models.Logins
         public string Email { get; set; }
         public string UserName { get; set; }
         public string status { get; set; }
+        public int VendorUserID { get; set; }
+        public int ID { get; set; }
+
     }
-        
+
 }

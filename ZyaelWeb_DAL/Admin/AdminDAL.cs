@@ -54,5 +54,32 @@ namespace ZyaelWeb_DAL.Admin
             }
         }
 
+
+
+        public async Task<int> SetVendorsLoginStatus(AdminLoginModel item)
+        {
+            try
+            {
+                using (SqlConnection con = GetConnection())
+                {
+                    con.Open();
+                    var Param =
+                        new
+                        {
+                            status = item.status,
+                            Id = item.Id,
+                            Vendor=item.Vendor
+                        };
+                    var response = await con.ExecuteScalarAsync<int>("SP_setVendorLoginStatus", Param, commandType: System.Data.CommandType.StoredProcedure);
+                    return response;
+                }
+            }
+            catch (Exception ex)
+            {
+                return -1;
+            }
+        }
+
+
     }
 }

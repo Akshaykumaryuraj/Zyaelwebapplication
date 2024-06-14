@@ -9,25 +9,21 @@ namespace ZyaelWeb.Controllers
 {
     public class BaseController : Controller
     {
-        public int CampusUserID
+        public int HospitalVendorID
         {
             get
             {
                 try
                 {
-                    //if (Convert.ToInt32(((ClaimsIdentity)User.Identity).FindFirst(ClaimTypes.Sid).Value) != null)
-                    //{
-                        var CampusUserID = Convert.ToInt32(((ClaimsIdentity)User.Identity).FindFirst(ClaimTypes.Sid).Value);
-                        //var CurrentUserId = Convert.ToInt32(1);
-                        return CampusUserID;
-                    //}
+                        var HospitalVendorID = Convert.ToInt32(((ClaimsIdentity)User.Identity).FindFirst(ClaimTypes.Sid).Value);
+                        return HospitalVendorID;
+                   
 
                 }
                 catch (Exception ex)
                 {
                     return 0;
                 }
-                //return 0;
             }
         }
 

@@ -35,6 +35,17 @@ namespace ZyaelWeb_Services.Admins
             }
         }
 
-
+        public async Task<int> SetVendorsLoginStatus(AdminLoginModel item)
+        {
+            try
+            {
+                var result = await _admindal.SetVendorsLoginStatus(item);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                return -1;
+            }
+        }
     }
 }

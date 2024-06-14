@@ -9,7 +9,7 @@ using IHostingEnvironment = Microsoft.AspNetCore.Hosting.IHostingEnvironment;
 
 namespace ZyaelWeb.Controllers.Logins
 {
-    public class AdminLoginController : Controller
+    public class AdminLoginController : BaseController
 
     {
         readonly IHttpContextAccessor _httpContextAccessor;
@@ -35,10 +35,7 @@ namespace ZyaelWeb.Controllers.Logins
                 List<Claim> claims = new List<Claim>
                 {
                     new Claim(ClaimTypes.Actor,Convert.ToString(result.AdminUserID)),
-                    //to avoid error
-                    //new Claim(ClaimTypes.Sid,Convert.ToString(result.VendorUserID)),
-                    new Claim(ClaimTypes.Name,Convert.ToString(result.Role)),
-
+                  
                 };
                 ClaimsIdentity identity = new ClaimsIdentity(claims, "Zyael");
                 ClaimsPrincipal principal = new ClaimsPrincipal(identity);
@@ -52,10 +49,8 @@ namespace ZyaelWeb.Controllers.Logins
             else
             {
                 TempData["ErrorMessage"] = "Invalid Credentials";
-                return RedirectToAction("Index", "Login");
-                //return Json("unsuccessful");
-                //return Json(result.returnId);
-
+                return RedirectToAction("AdminLogin", "AdminLogin");
+               
 
 
             }

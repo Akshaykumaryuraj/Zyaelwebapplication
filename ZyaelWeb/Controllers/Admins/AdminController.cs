@@ -57,5 +57,13 @@ namespace ZyaelWeb.Controllers.Admins
             return Json(new { draw = draw, recordsFiltered = recordsTotal, recordsTotal = recordsTotal, data = list });
         }
 
+
+        [HttpPost]
+        public async Task<IActionResult> SetVendorsLoginStatus(AdminLoginModel item)
+        {
+            var result = await _admin.SetVendorsLoginStatus(item);
+            return Json(result);
+        }
+
     }
 }
