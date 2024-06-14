@@ -654,9 +654,15 @@
 
                                             <div class="row justify-content-end">
                                                 <div class="col-sm-10">
-                                                    <button type="submit" class="btn btn-success">Submit</button>
+                                                    @if (Model.PatientID > 0)
+                                                    {
+                                                        <button type="submit" class="btn btn-success">Update</button>
+                                                    }
+                                                    else
+                                                    {
+                                                        <button type="submit" class="btn btn-success">Submit</button>
 
-
+                                                    }
 
                                                 </div>
 

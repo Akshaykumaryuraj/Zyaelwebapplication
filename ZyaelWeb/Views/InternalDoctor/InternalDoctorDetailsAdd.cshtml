@@ -464,7 +464,7 @@
                             <div class="col-xxl">
                                 <div class="card mb-4">
                                     <div class="card-header d-flex align-items-center justify-content-between">
-                                        <h5 class="mb-0">Fill All Details</h5> <small class="text-muted float-end">Doctors Details</small>
+                                        <h5 class="mb-0">Doctors Details</h5> <small class="text-muted float-end">Doctors Details</small>
                                     </div>
                                     <div class="card-body">
                                         <form asp-action="InternalDoctorDetails_InsertUpdate" asp-controller="InternalDoctor" class="" data-ajax="true" data-ajax-method="post" id="" data-ajax-success="onSuccess" enctype="multipart/form-data">
@@ -524,7 +524,30 @@
                                                 <div class="col-sm-10">
                                                     <div class="input-group input-group-merge">
                                                         <span id="" class="input-group-text"><i class="basic-icon-gender"></i></span>
-                                                        @Html.TextBoxFor(model => model.Gender, new { @class = "form-control cleardata", @id = "", @name = "", @placeholder = "" })
+@*                                                         @Html.TextBoxFor(model => model.Gender, new { @class = "form-control cleardata", @id = "", @name = "", @placeholder = "" })
+
+ *@                                                        @*@Html.TextBoxFor(model => model.Gender, new { @class = "form-control cleardata", @id = "MobileNumber", @name = "MobileNumber", @placeholder = "Enter Mobile Number" })*@
+                                                        @{
+                                                            List<SelectListItem> L1 = new List<SelectListItem>();
+
+                                                            L1.Add(new SelectListItem
+                                                                {
+                                                                    Text = "Male",
+                                                                    Value = "Male"
+                                                                });
+                                                            L1.Add(new SelectListItem
+                                                                {
+                                                                    Text = "Female",
+                                                                    Value = "Female",
+                                                                });
+                                                            L1.Add(new SelectListItem
+                                                                    {
+                                                                        Text = "others",
+                                                                        Value = "others",
+                                                                    });
+                                                        }
+                                                        @Html.DropDownListFor(model => model.Gender, L1, "--choose--", new { @class = "form-control cleardata", @id = "", @onchange = "" })
+                                                        @Html.ValidationMessageFor(model => model.Gender, "", new { @class = "text-danger" })
                                                     </div>
                                                 </div>
                                             </div>
@@ -659,13 +682,19 @@
                                             </div>
 
 
-
+                            
 
                                             <div class="row justify-content-end">
                                                 <div class="col-sm-10">
-                                                    <button type="submit" class="btn btn-success">Submit</button>
+                                                     @if (Model.IDoctorID > 0)
+                                                    {
+                                                        <button type="submit" class="btn btn-success">Update</button>
+                                                    }
+                                                    else
+                                                    {
+                                                        <button type="submit" class="btn btn-success">Submit</button>
 
-
+                                                    }
 
                                                 </div>
 

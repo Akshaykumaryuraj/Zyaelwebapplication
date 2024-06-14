@@ -37,6 +37,29 @@ namespace ZyaelWeb_Models.InternalDoctor
         public string EmailAddress { get; set; }
         public string Description { get; set; }
         public int TotalrowCount { get; set; }
+        public List<Shifts> Shifts { get; set; }
 
+
+
+    }
+    public class ShiftSlotModel
+    {
+        public int ShiftSlotID { get; set; }
+        public bool Available { get; set; }
+        public string SlotsAvailable { get; set; }
+        public string Time { get; set; }
+        public List<Shifts> Shifts { get; set; }
+        public int IDoctorID { get; set; }
+        public string FirstName { get; set; }
+        public int HospitalVendorID { get; set; }
+        public int count { get; set; }
+        public DateTime Date { get; set; }
+
+    }
+
+    public class Shifts
+    {
+        public string Time { get; set; }
+        public bool Available { get; set; }
     }
 }

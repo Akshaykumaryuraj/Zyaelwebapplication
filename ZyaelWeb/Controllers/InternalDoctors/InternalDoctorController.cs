@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
+using System.Security.Policy;
 using ZyaelWeb_Models.InternalDoctor;
 using ZyaelWeb_Models.Logins;
 using ZyaelWeb_Services.Admins;
@@ -106,6 +107,15 @@ namespace ZyaelWeb.Controllers.InternalDoctors
             return Json(result);
         }
 
+
+        [HttpPost]
+        public async Task<IActionResult> SetInternalDoctorSlots(int IDoctorID, int HospitalVendorID, DateTime Date,List<Shifts> item)
+        {
+
+            var result = await _internaldoctor.SetInternalDoctorSlots(IDoctorID, HospitalVendorID, Date, item);
+
+            return Json(result);
+        }
 
     }
 }

@@ -150,6 +150,59 @@ namespace ZyaelWeb_DAL.InternalDoctor
                 return -1;
             }
         }
+
+        public async Task<ShiftSlotModel> SetInternalDoctorSlots(int IDoctorID, int HospitalVendorID, DateTime Date,List<Shifts> item)
+        {
+            ShiftSlotModel result = new ShiftSlotModel();
+            //IEnumerable<string> count = SlotsAvailable.Select(count = > count.ToString());
+
+            try
+            {
+
+                var Connection = new SqlConnection(_config.GetConnectionString("DefautConnection"));
+                using (SqlConnection con = Connection)
+                {
+                    con.Open();
+                    var del =
+                           new
+                           {
+                               IDoctorID = IDoctorID,
+                               Date = Date
+
+                           };
+                    var response = await con.ExecuteScalarAsync<ShiftSlotModel>("SP_InternalDoctorSlotDetailsDelete", del, commandType: System.Data.CommandType.StoredProcedure);
+                    foreach (var item1 in item)
+                    {
+
+
+                        var Param =
+                                new
+                                {
+                                    IDoctorID = IDoctorID,
+                                    HospitalVendorID = HospitalVendorID,
+                                    Date = Date,
+                                    Time = item1.Time,
+                                    Available = item1.Available
+
+
+                                };
+                        await con.ExecuteScalarAsync<ShiftSlotModel>("SP_SetInternalDoctorSlots", Param, commandType: System.Data.CommandType.StoredProcedure);
+
+                    }
+
+                    result.Shifts = item.ToList();
+                    result.IDoctorID = IDoctorID;
+                    result.HospitalVendorID = HospitalVendorID;
+                    result.Date = Date;
+                    return result;
+                }
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
     }
 }
 
