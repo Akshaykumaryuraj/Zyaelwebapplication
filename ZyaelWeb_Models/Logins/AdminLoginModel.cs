@@ -25,10 +25,25 @@ namespace ZyaelWeb_Models.Logins
         public int TotalrowCount { get; set; }
         public string Email { get; set; }
         public string UserName { get; set; }
+        public string specialization { get; set; }
         public string status { get; set; }
         public int VendorUserID { get; set; }
+        public string City { get; set; }
         public int ID { get; set; }
 
     }
+
+    //public class SpecialitiesModel
+    //{
+    //    public int SpecialityID { get; set; }
+    //    public int TotalrowCount { get; set; }
+    //    public string SpecialityName { get; set; }
+    //    public string SpecialityCode { get; set; }
+    //    public string SpecialityImage { get; set; }
+    //    public int returnId { get; set; }
+    //    public string message { get; set; }
+    //    public string Symptoms { get; set; }
+    //    public bool status { get; set; }
+    //}
 
 }

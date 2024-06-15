@@ -1,15 +1,15 @@
 ﻿
 $(document).ready(function () {
     debugger
-    var datatable = $('#Vendorcredentialgrid').dataTable();
+    var datatable = $('#SpecializationsGrid').dataTable();
     datatable.fnDestroy();
-    BindVendorsCredentialGrid();
+    BindSpecializationsGrid();
 });
 
-function BindVendorsCredentialGrid(vendor) {
+function BindSpecializationsGrid(vendor) {
     debugger
     var count = 1;
-    var table = $("#Vendorcredentialgrid").DataTable({
+    var table = $("#SpecializationsGrid").DataTable({
         "processing": true,
         "serverSide": true,
         "filter": true,
@@ -22,22 +22,21 @@ function BindVendorsCredentialGrid(vendor) {
             datatype: "json",
             data: function () {
                 debugger
-                var info = $('#Vendorcredentialgrid').DataTable().page.info();
+                var info = $('#SpecializationsGrid').DataTable().page.info();
                 var TemplateStr = 'pageNumber=' + (info.page + 1);
 
-                if ($('#Vendorcredentialgrid_length select').val() > 0) {
-                    TemplateStr += '&pagesize=' + $('#Vendorcredentialgrid_length select').val();
+                if ($('#SpecializationsGrid_length select').val() > 0) {
+                    TemplateStr += '&pagesize=' + $('#SpecializationsGrid_length select').val();
                 } else {
                     TemplateStr += '&pageSize=100';
                 }
                 TemplateStr += '&vendor=' + vendor;
-                $('#Vendorcredentialgrid').DataTable().ajax.url(
-                    '/Admin/getVendorsCredentialDetails?' + TemplateStr
+                $('#SpecializationsGrid').DataTable().ajax.url(
+                    '/Admin/getSpecializationsDetails?' + TemplateStr
                 );
             },
             "dataSrc": function (json) {
-                console.log(json.data);
-
+                debugger
                 return json.data;
             }
         },
@@ -47,7 +46,7 @@ function BindVendorsCredentialGrid(vendor) {
 
 
                 "render": function (data, type, row, meta) {
-
+                    
                     var con = '<span>' + count + '</span>';
                     count = count + 1;
                     return con;
@@ -55,30 +54,21 @@ function BindVendorsCredentialGrid(vendor) {
             },
 
             {
-                "data": "userName", "name": "userName", orderable: false, "className": "",
-
-            },
-            {
-                "data": "specialization", "name": "specialization", orderable: false, "className": "",
-
+                "data": "specialityName", "name": "specialityName", orderable: false, "className": "",
+                
             },
 
             {
-                "data": "email", "name": "email", orderable: false, "className": "",
+                "data": "specialityCode", "name": "specialityCode", orderable: false, "className": "",
 
             },
-            {
-                "data": "city", "name": "city", orderable: false, "className": "",
-
-            },
-
 
             {
                 "data": "status", "name": "status", orderable: false, "className": "",
                 "render": function (data, type, row, meta) {
                     var status = '';
                     status += '<label class="switch">';
-                    status += '<input type="checkbox" ' + (row.status == "True" ? "checked" : "") + ' id="rowstatus' + row.id + '"  onclick="setStatus(' + row.id + ',\'' + vendor+'\');">';
+                    status += '<input type="checkbox" ' + (row.status == "True" ? "checked" : "") + ' id="rowstatus' + row.specialityID + '"  onclick="setStatus(' + row.specialityID + ');">';
                     //status += '<span class="slider round"></span>';
                     status += '</label>';
 
@@ -86,35 +76,30 @@ function BindVendorsCredentialGrid(vendor) {
                     return status;
                 }
             },
-
+           
             {
-                "data": "action", sorting: false, orderable: false, "className": "table-actions",
+                "data": "status", sorting: false, orderable: false, "className": "table-actions",
                 "render": function (data, type, row, meta) {
                     var Action = '';
-                    Action += '<a href="#" onclick="ProfileHeadDetailsDelete(' + row.idOCTORid + ')"><img src="/images/edit.png"/></a>';
-                    Action += '<a href="#" onclick="ProfileHeadDetailsDelete(' + row.idOCTORid + ')"><img src="/images/delete.png"/></a>';
+                    Action += '<a href="/Admin/SpecialitiesDetailsAdd?SpecialityID=' + row.specialityID + ' "><img src="/images/edit.png"/></a>';
+                    Action += '<a href="#" onclick="ProfileHeadDetailsDelete(' + row.specialityID + ')"><img src="/images/delete.png"/></a>';
                     return Action;
                 }
 
             }
         ]
     });
-
-
-   
-    }
-function setStatus(id, vendor) {
+}
+function setStatus(specialityID) {
     debugger
-    var status = $('#rowstatus' + id).is(':checked');
+    var status = $('#rowstatus' + specialityID).is(':checked');
     //var status = $('#checkstatus').prop('checked');
     var form_data = new FormData();
     form_data.append("status", status);
-    form_data.append("ID", id);
-    form_data.append("Vendor", vendor);
-
+    form_data.append("SpecialityID", specialityID);
     $.ajax({
         type: "POST",
-        url: "/Admin/SetVendorsLoginStatus",
+        url: "/Admin/SetSpecilizationStatus",
         dataType: "JSON",
         data: form_data,
         cache: false,
@@ -122,7 +107,7 @@ function setStatus(id, vendor) {
         processData: false,
         success: function (response) {
             if (response > 0) {
-                window.location.href = 'Admin/VendorsCredentialGrid'
+                window.location.href = 'Admin/SpecializationsGrid'
             }
         }
     });

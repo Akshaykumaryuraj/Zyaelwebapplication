@@ -24,6 +24,20 @@ namespace ZyaelWeb.Controllers.Logins
             _adminlogin = new AdminLogin(httpContextAccessor, config);
         }
 
+
+        [HttpGet]
+        public IActionResult Logout()
+        {
+            foreach (var cookie in HttpContext.Request.Cookies)
+            {
+                Response.Cookies.Delete(cookie.Key);
+            }
+            HttpContext.SignOutAsync();
+            HttpContext.Session.Clear();
+            var response = 1;
+            return Json(response);
+        }
+
         [HttpPost]
         public async Task<IActionResult> SetAdminLogin(AdminLoginModel item)
         {
