@@ -36,7 +36,7 @@ function BindInternalDoctorsGrid(vendor) {
                 );
             },
             "dataSrc": function (json) {
-                debugger
+                console.log(json);
                 return json.data;
             }
         },
@@ -92,7 +92,8 @@ function BindInternalDoctorsGrid(vendor) {
                 "data": "updates", "name": "updates", orderable: false, "className": "",
                 "render": function (data, type, row, meta) {
                     var Action = '';
-                    Action += '<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#smallModal">Active</button>';
+                    //Action += '<a href="/InternalDoctor/_Partialslotspopup?IDoctorID=' + row.iDoctorID + ' ">Active</button>';
+                    Action += '<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#smallModal" onclick="showslotpopup(\'' + row.firstName + '\',' + row.iDoctorID + ')">Active</button>';
                     //Action += '<label class="">active</label>';
                     return Action;
                 }
@@ -113,7 +114,7 @@ function BindInternalDoctorsGrid(vendor) {
     });
 }
 function setStatus(iDoctorID) {
-    debugger
+
     var status = $('#rowstatus' + iDoctorID).is(':checked');
     //var status = $('#checkstatus').prop('checked');
     var form_data = new FormData();
@@ -133,4 +134,11 @@ function setStatus(iDoctorID) {
             }
         }
     });
+}
+
+
+function showslotpopup(firstName, Idoctorid) {
+    $('#firstName').val(firstName);
+    $('#hdnIDoctorID').val(Idoctorid);
+
 }

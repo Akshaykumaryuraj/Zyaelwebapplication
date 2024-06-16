@@ -77,11 +77,24 @@ namespace ZyaelWeb_Services.InternalDoctor
             }
         }
 
-        public async Task<ShiftSlotModel> SetInternalDoctorSlots(int IDoctorID, int HospitalVendorID, DateTime Date,List<Shifts> item)
+        public async Task<int> SetInternalDoctorSlots(ShiftSlotModel item)
         {
             try
             {
-                var result = await _internaldoctordal.SetInternalDoctorSlots(IDoctorID, HospitalVendorID, Date, item);
+                var result = await _internaldoctordal.SetInternalDoctorSlots(item);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                return 0;
+            }
+        }
+
+        public async Task<ShiftSlotModel> GetIDoctorDetails(int IDoctorID)
+        {
+            try
+            {
+                var result = await _internaldoctordal.GetIDoctorDetails(IDoctorID);
                 return result;
             }
             catch (Exception ex)
@@ -89,6 +102,7 @@ namespace ZyaelWeb_Services.InternalDoctor
                 return null;
             }
         }
+
     }
 }
 

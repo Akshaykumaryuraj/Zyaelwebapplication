@@ -151,27 +151,31 @@ namespace ZyaelWeb_DAL.InternalDoctor
             }
         }
 
-        public async Task<ShiftSlotModel> SetInternalDoctorSlots(int IDoctorID, int HospitalVendorID, DateTime Date,List<Shifts> item)
+        public async Task<int> SetInternalDoctorSlots(ShiftSlotModel item)
         {
             ShiftSlotModel result = new ShiftSlotModel();
-            //IEnumerable<string> count = SlotsAvailable.Select(count = > count.ToString());
 
             try
             {
 
-                var Connection = new SqlConnection(_config.GetConnectionString("DefautConnection"));
-                using (SqlConnection con = Connection)
+              
+                using (SqlConnection con = GetConnection())
                 {
                     con.Open();
                     var del =
                            new
                            {
-                               IDoctorID = IDoctorID,
-                               Date = Date
+                               IDoctorID = item.IDoctorID,
+                               Date = item.Date
 
                            };
-                    var response = await con.ExecuteScalarAsync<ShiftSlotModel>("SP_InternalDoctorSlotDetailsDelete", del, commandType: System.Data.CommandType.StoredProcedure);
-                    foreach (var item1 in item)
+                    await con.ExecuteScalarAsync<ShiftSlotModel>("SP_InternalDoctorSlotDetailsDelete", del, commandType: System.Data.CommandType.StoredProcedure);
+
+                    DateTime Date = item.Date;
+                    int IDoctorID = item.IDoctorID;
+                    int HospitalVendorID = item.HospitalVendorID;
+                    bool Available = item.Available;
+                    foreach (var slottimings in item.slottimings)
                     {
 
 
@@ -181,20 +185,38 @@ namespace ZyaelWeb_DAL.InternalDoctor
                                     IDoctorID = IDoctorID,
                                     HospitalVendorID = HospitalVendorID,
                                     Date = Date,
-                                    Time = item1.Time,
-                                    Available = item1.Available
+                                    Time = slottimings,
+                                    Available = true
 
 
                                 };
-                        await con.ExecuteScalarAsync<ShiftSlotModel>("SP_SetInternalDoctorSlots", Param, commandType: System.Data.CommandType.StoredProcedure);
+                        await con.ExecuteScalarAsync<int>("SP_SetInternalDoctorSlots", Param, commandType: System.Data.CommandType.StoredProcedure);
 
                     }
+                    return 0;
 
-                    result.Shifts = item.ToList();
-                    result.IDoctorID = IDoctorID;
-                    result.HospitalVendorID = HospitalVendorID;
-                    result.Date = Date;
-                    return result;
+                }
+            }
+            catch (Exception ex)
+            {
+                return 0;
+            }
+        }
+        public async Task<ShiftSlotModel> GetIDoctorDetails(int IDoctorID)
+        {
+            try
+            {
+
+                using (SqlConnection con = GetConnection())
+                {
+                    con.Open();
+                    var Param =
+                        new
+                        {
+                            IDoctorID = IDoctorID
+
+                        };
+                    return (await con.QueryAsync<ShiftSlotModel>("SP_getInternalDoctorsByIDoctorID", Param, commandType: System.Data.CommandType.StoredProcedure)).FirstOrDefault();
                 }
             }
             catch (Exception ex)

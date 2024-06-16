@@ -490,19 +490,19 @@
                                     </div>
                                     <div class="modal-body">
                                         <form asp-action="SetInternalDoctorSlots" asp-controller="InternalDoctor" class="" data-ajax="true" data-ajax-method="post" id="" data-ajax-success="onSuccess" enctype="multipart/form-data">
-                                            @Html.HiddenFor(model => model.IDoctorID, new { @id = "" })
-                                            @Html.HiddenFor(model => model.HospitalVendorID, new { @id = "hdnhospitalvendorid" })
+                                            @Html.HiddenFor(model => model.IDoctorID, new { @id = "hdnIDoctorID" })
+                                           
                                         <div class="row">
                                             <div class="row g-2">
                                                 <div class="col mb-0">
                                                     <label class="form-label" for="emailSmall">Doctor Name</label>
-                                                        @Html.TextBoxFor(model => model.FirstName, new { @class = "form-control cleardata", @id = "", @name = "", @placeholder = ""})
+                                                        @Html.TextBoxFor(model => model.FirstName, new { @class = "form-control cleardata", @id = "firstName", @name = "", @placeholder = "", @readonly = "readonly" })
                                                 </div>
                                                 <div class="col mb-0">
                                                     <label for="dobSmall" class="form-label">Date</label>
 
 @*                                                     <input id="dobSmall" type="date" class="form-control">
- *@                                                        @Html.TextBoxFor(model => model.Date, new { @class = "form-control jquery-datepicker cleardata", @id = "dobSmall", @name = "", @placeholder = "", @type = "date" })
+ *@                                                        @Html.TextBoxFor(model => model.Date, new { @class = "form-control jquery-datepicker cleardata", @id = "date", @name = "", @placeholder = "", @type = "date" })
 
                                                 </div>
                                             </div>
@@ -511,20 +511,22 @@
                                             <div class="col mb-3">
                                                 <label for="selectpickerMultiple" class="form-label">Select Slots Time</label>
 
-                                                <select id="selectpickerMultiple" class="selectpicker w-100" data-style="btn-default" multiple data-icon-base="bx" data-tick-icon="bx-check text-primary">
+                                               @*  <select id="selectpickerMultiple" class="selectpicker w-100" data-style="btn-default" multiple data-icon-base="bx" data-tick-icon="bx-check text-primary">
                                                     <option>10:00AM</option>
                                                     <option>10:30AM</option>
                                                     <option>11:00AM</option>
                                                     <option>10:30AM</option>
                                                     <option>12:00PM</option>
                                                    
-                                                </select>
+                                                </select> *@
+                                                    @Html.DropDownListFor(model => model.slottimings, new MultiSelectList(Model.drpSubjects, "Value", "Text"), new { @class = "selectpicker w-100 btn-default", multiple = "multiple", id = "selectpickerMultiple" })
+
                                             </div>
                                         </div>
                                       
                                     <div class="modal-footer">
 
-                                                <button type="submit" class="btn btn-label-secondary" data-bs-dismiss="modal">Close</button>
+                                                <button type="button" class="btn btn-label-secondary" data-bs-dismiss="modal">Close</button>
                                                 <button type="submit" class="btn btn-primary">Update Slots</button>
 
 

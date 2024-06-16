@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.WebPages.Html;
 
 namespace ZyaelWeb_Models.InternalDoctor
 {
@@ -49,12 +50,13 @@ namespace ZyaelWeb_Models.InternalDoctor
         public string SlotsAvailable { get; set; }
         public string Time { get; set; }
         public List<Shifts> Shifts { get; set; }
+        public List<string> slottimings { get; set; }
         public int IDoctorID { get; set; }
         public string FirstName { get; set; }
         public int HospitalVendorID { get; set; }
         public int count { get; set; }
         public DateTime Date { get; set; }
-
+        public List<SelectListItem> drpSubjects { get; set; }
     }
 
     public class Shifts

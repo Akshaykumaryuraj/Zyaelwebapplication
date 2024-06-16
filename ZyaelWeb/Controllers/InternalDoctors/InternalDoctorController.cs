@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 using System.Security.Policy;
+using System.Web.WebPages.Html;
 using ZyaelWeb_Models.InternalDoctor;
 using ZyaelWeb_Models.Logins;
 using ZyaelWeb_Services.Admins;
@@ -73,8 +74,12 @@ namespace ZyaelWeb.Controllers.InternalDoctors
 
         public IActionResult InternalDoctorsGrid()
             {
-
-            return View();
+            ShiftSlotModel item = new ShiftSlotModel();
+            List<SelectListItem> obj = new List<SelectListItem>();
+            obj.Add(new SelectListItem() { Text = "10:00AM", Value = "10:00AM" });
+            obj.Add(new SelectListItem() { Text = "10:30AM", Value = "10:30AM" });
+            item.drpSubjects = obj;
+            return View(item);
         }
 
 
@@ -109,14 +114,13 @@ namespace ZyaelWeb.Controllers.InternalDoctors
 
 
         [HttpPost]
-        public async Task<IActionResult> SetInternalDoctorSlots(int IDoctorID, int HospitalVendorID, DateTime Date,List<Shifts> item)
+        public async Task<IActionResult> SetInternalDoctorSlots(ShiftSlotModel item)
         {
+            item.HospitalVendorID=HospitalVendorID; 
+            var result = await _internaldoctor.SetInternalDoctorSlots(item);
 
-            var result = await _internaldoctor.SetInternalDoctorSlots(IDoctorID, HospitalVendorID, Date, item);
-
-            return Json(result);
+            return RedirectToAction("InternalDoctorsGrid", "InternalDoctor");
         }
-
     }
 }
 
