@@ -49,6 +49,61 @@ namespace ZyaelWeb_DAL.Logins
             }
         }
 
+        public async Task<DiagnosticLabVendorsLoginModel> SetDiagnosticLabLogin(DiagnosticLabVendorsLoginModel item)
+        {
+            //var password = common.PasswordEncription(item.Password);
+            try
+            {
+                var Connection = new SqlConnection(_config.GetConnectionString("DefautConnection"));
+                using (SqlConnection con = GetConnection())
+                {
+                    con.Open();
+                    var Param =
+                        new
+                        {
+
+                            //DiagnosticLabVendorEmail = item.DiagnosticLabVendorEmail,
+                            //DiagnosticLabVendorPassword = item.DiagnosticLabVendorPassword
+                            Email = item.Email,
+                            Password = item.Password
+
+                        };
+                    return (await con.QueryAsync<DiagnosticLabVendorsLoginModel>("sp_checkDiagnosticLabLoginDetails", Param, commandType: System.Data.CommandType.StoredProcedure)).FirstOrDefault();
+                }
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+
+        public async Task<PharmacyVendorsLoginModel> SetPharmacyLogin(PharmacyVendorsLoginModel item)
+        {
+            //var password = common.PasswordEncription(item.Password);
+            try
+            {
+                var Connection = new SqlConnection(_config.GetConnectionString("DefautConnection"));
+                using (SqlConnection con = GetConnection())
+                {
+                    con.Open();
+                    var Param =
+                        new
+                        {
+
+                            Email = item.Email,
+                            Password = item.Password
+
+                        };
+                    return (await con.QueryAsync<PharmacyVendorsLoginModel>("sp_checkPharmacyVendorLoginDetails", Param, commandType: System.Data.CommandType.StoredProcedure)).FirstOrDefault();
+                }
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
     }
 }
 

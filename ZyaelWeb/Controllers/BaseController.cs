@@ -69,6 +69,26 @@ namespace ZyaelWeb.Controllers
             }
         }
 
+        public int DLVID
+        {
+            get
+            {
+                try
+                {
+                    //if (ClaimTypes.Actor != null)
+                    //{
+                    var DLVID = Convert.ToInt32(((ClaimsIdentity)User.Identity).FindFirst(ClaimTypes.Name).Value);
+                    //var CurrentUserId = Convert.ToInt32(1);
+                    return DLVID;
+                    //}
+                }
+                catch (Exception ex)
+                {
+                    return 0;
+                }
+            }
+        }
+
 
         public long CurrentUserId
         {

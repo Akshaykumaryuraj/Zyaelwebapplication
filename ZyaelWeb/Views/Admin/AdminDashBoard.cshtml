@@ -48,6 +48,7 @@
     <link rel="stylesheet" href="~/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
     <link rel="stylesheet" href="~/assets/vendor/libs/typeahead-js/typeahead.css" /> 
     <link rel="stylesheet" href="~/assets/vendor/libs/apex-charts/apex-charts.css" />
+    <link rel="stylesheet" href="../../assets/vendor/libs/spinkit/spinkit.css" />
 
     <!-- Page CSS -->
     
@@ -64,15 +65,16 @@
 
 <body>
 
-  
 
+    <div class="sk-wave sk-primary">
+        <div class="sk-wave-rect"></div>
+        <div class="sk-wave-rect"></div>
+        <div class="sk-wave-rect"></div>
+        <div class="sk-wave-rect"></div>
+        <div class="sk-wave-rect"></div>
+    </div>
   
   <!-- Layout wrapper -->
-<div class="layout-wrapper layout-content-navbar  ">
-  <div class="layout-container">
-
-    
-    
 
 
 
@@ -398,7 +400,12 @@
       <div class="content-wrapper">
 
         <!-- Content -->
-        
+            <div class="layout-wrapper layout-content-navbar  ">
+                <div class="layout-container">
+
+               
+                     
+
           <div class="container-xxl flex-grow-1 container-p-y">
             
             
@@ -659,12 +666,6 @@
   </div>
   <!--/ Order Statistics -->
 
- 
-
- 
- 
-</div>
-
           </div>
           <!-- / Content -->
 
@@ -731,7 +732,8 @@
 
   <!-- Page JS -->
   <script src="~/assets/js/dashboards-analytics.js"></script>
-  
+    <script src="../../assets/vendor/js/menu.js"></script>
+
 </body>
 <script>
     function AdminLogout() {

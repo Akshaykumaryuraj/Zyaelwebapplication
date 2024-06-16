@@ -33,6 +33,33 @@ namespace ZyaelWeb_Services.Logins
                 return null;
             }
         }
+
+        public async Task<DiagnosticLabVendorsLoginModel> SetDiagnosticLabLogin(DiagnosticLabVendorsLoginModel item)
+        {
+            try
+            {
+                var result = await _logindal.SetDiagnosticLabLogin(item);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+
+        public async Task<PharmacyVendorsLoginModel> SetPharmacyLogin(PharmacyVendorsLoginModel item)
+        {
+            try
+            {
+                var result = await _logindal.SetPharmacyLogin(item);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
     }
 }
 

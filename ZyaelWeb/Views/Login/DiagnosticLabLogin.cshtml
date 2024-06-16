@@ -1,4 +1,4 @@
-﻿@model ZyaelWeb_Models.Logins.HospitalsVendorsLoginModel
+﻿@model ZyaelWeb_Models.Logins.DiagnosticLabVendorsLoginModel
 @{
     Layout = null;
 }
@@ -10,7 +10,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 
-    <title>Hospital Login | Zyael Healthcare</title>
+    <title>Diagnostic Lab Login | Zyael Healthcare</title>
 
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="https://demos.themeselection.com/sneat-aspnet-core-mvc-admin-template/assets/img/favicon/favicon.ico" />
@@ -105,24 +105,21 @@
                             </a>
                         </div>
                         <!-- /Logo -->
-                        <h4 class="mb-2">Welcome to Zyael - Hospital Panel! 👋</h4>
+                        <h4 class="mb-2">Welcome to Zyael - Diagnostic Lab Panel! 👋</h4>
                         <p class="mb-4">Please sign-in & start managing the Patients</p>
-                        <form asp-action="SetHospitalLogin" asp-controller="Login" class="mb-3" id="loginsubmit">
+                        <form asp-action="SetDiagnosticLabLogin" asp-controller="Login" class="mb-3" id="loginsubmit">
                             <div class="mb-3">
                                 <label for="email" class="form-label">Email or Username</label>
-                                @Html.TextBoxFor(model => model.HospitalVendorEmail, new { @class = "form-control", @placeholder = "Enter Email ID", @id = "" })
-                                @Html.ValidationMessageFor(model => model.HospitalVendorEmail, "", new { @id = "formValidationEmail", @class = "text-danger" })
+                                @Html.TextBoxFor(model => model.Email, new { @class = "form-control", @placeholder = "Enter Email ID", @id = "" })
+                                @Html.ValidationMessageFor(model => model.Email, "", new { @id = "formValidationEmail", @class = "text-danger" })
 
                             </div>
-                            <div class="col-md-6">
-                                <label class="form-label" for="formValidationName">Full Name</label>
-                                <input type="text" id="formValidationName" class="form-control" placeholder="John Doe" name="formValidationName" />
-                            </div>
+                            
                             <div class="mb-3 form-password-toggle">
 
                                 <div class="input-group input-group-merge">
-                                    @Html.TextBoxFor(model => model.HospitalVendorPassword, new { @class = "form-control form-control-lg", @placeholder = "Enter Password", @id = "formValidationEmail", @for = "formValidationEmail" })
-                                    @Html.ValidationMessageFor(model => model.HospitalVendorPassword, "", new { @id = "HospitalVendorPassword", @class = "text-danger" })
+                                    @Html.TextBoxFor(model => model.Password, new { @class = "form-control form-control-lg", @placeholder = "Enter Password", @id = "formValidationEmail", @for = "formValidationEmail" })
+                                    @Html.ValidationMessageFor(model => model.Password, "", new { @id = "dlvid VendorPassword", @class = "text-danger" })
 
                                     <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
                                 </div>

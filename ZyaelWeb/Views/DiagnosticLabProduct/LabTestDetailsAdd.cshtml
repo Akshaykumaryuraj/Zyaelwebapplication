@@ -1,4 +1,4 @@
-﻿@model ZyaelWeb_Models.InternalDoctor.InternalDoctorModel
+﻿@model ZyaelWeb_Models.DiagnosticLabs.DiagnosisLabTestDetailsModel
 
 
 @{
@@ -17,15 +17,12 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 
-    <title> Internal Doctor Details Add | Zyael</title>
+    <title> Lab Test Details Add | Zyael</title>
 
 
     <meta name="description" content="Most Powerful &amp; Comprehensive Bootstrap 5 HTML Admin Dashboard Template built for developers!" />
     <meta name="keywords" content="dashboard, bootstrap 5 dashboard, bootstrap 5 design, bootstrap 5">
     <!-- Canonical SEO -->
-
-
-
     <!-- End Google Tag Manager -->
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="https://demos.themeselection.com/sneat-aspnet-core-mvc-admin-template/assets/img/favicon/favicon.ico" />
@@ -342,11 +339,6 @@
 
 
                 <!-- / Navbar -->
-
-
-
-
-
                 <!-- Content wrapper -->
                 <div class="content-wrapper">
 
@@ -355,8 +347,8 @@
                     <div class="container-xxl flex-grow-1 container-p-y">
 
 
-                        <h4 class="py-3 mb-4"><span class="text-muted fw-light">Form/</span>Doctor Details</h4>
-                        <input type="hidden" name="HospitalVendorID" value="@ViewBag.UserTypeId" id="hdnhospitalvendorid" />
+                        <h4 class="py-3 mb-4"><span class="text-muted fw-light">Form/</span>Lab Test Details</h4>
+                        <input type="hidden" name="DLVID" value="@ViewBag.UserTypeId" id="hdndlvid" />
 
                         <!-- Basic Layout & Basic with Icons -->
                         <div class="row">
@@ -365,237 +357,235 @@
                             <div class="col-xxl">
                                 <div class="card mb-4">
                                     <div class="card-header d-flex align-items-center justify-content-between">
-                                        <h5 class="mb-0">Doctors Details</h5> <small class="text-muted float-end">Doctors Details</small>
+                                        <h5 class="mb-0">Lab Test Details</h5> <small class="text-muted float-end">Lab Test Details</small>
                                     </div>
                                     <div class="card-body">
-                                        <form asp-action="InternalDoctorDetails_InsertUpdate" asp-controller="InternalDoctor" class="" data-ajax="true" data-ajax-method="post" id="" data-ajax-success="onSuccess" enctype="multipart/form-data">
-                                            @Html.HiddenFor(model => model.IDoctorID, new { @id = "" })
-                                            @Html.HiddenFor(model => model.HospitalVendorID, new { @id = "hdnhospitalvendorid" })
-@*                                             @Html.HiddenFor(model => model.HospitalVendorID, new { @id = "hdnhospitalvendoridforadd" })
- *@
+                                        <form asp-action="LabTestDetails_InsertUpdateByDiagnosisLab" asp-controller="DiagnosticLabProduct" class="" data-ajax="true" data-ajax-method="post" id="" data-ajax-success="onSuccess" enctype="multipart/form-data">
+                                            @Html.HiddenFor(model => model.LabTestID, new { @id = "" })
+                                            @Html.HiddenFor(model => model.DLVID, new { @id = "hdndlvid" })
+                                            @*                                             @Html.HiddenFor(model => model.HospitalVendorID, new { @id = "hdnhospitalvendoridforadd" })
+                                            *@
                                             <div class="row mb-3">
-                                                <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">First Name</label>
+                                                <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Lab Test Name</label>
                                                 <div class="col-sm-10">
                                                     <div class="input-group input-group-merge">
                                                         <span id="basic-icon-default-fullname2" class="input-group-text"><i class="bx bx-user"></i></span>
-                                                        @Html.TextBoxFor(model => model.FirstName, new { @class = "form-control cleardata", @id = "", @name = "", @placeholder = "" })
+                                                        @Html.TextBoxFor(model => model.LabTestName, new { @class = "form-control cleardata", @id = "", @name = "", @placeholder = "" })
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="row mb-3">
-                                                <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Last Name</label>
+                                                <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">LabTest SubTitle_1</label>
                                                 <div class="col-sm-10">
                                                     <div class="input-group input-group-merge">
                                                         <span id="basic-icon-default-fullname2" class="input-group-text"><i class="bx bx-user"></i></span>
-                                                        @Html.TextBoxFor(model => model.LastName, new { @class = "form-control cleardata", @id = "", @name = "", @placeholder = "" })
+                                                        @Html.TextBoxFor(model => model.LabTestSubTitle_1, new { @class = "form-control cleardata", @id = "", @name = "", @placeholder = "" })
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="row mb-3">
-                                                <label class="col-sm-2 col-form-label" for="basic-icon-default-email">Email</label>
+                                                <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">LabTest SubTitle_2</label>
                                                 <div class="col-sm-10">
                                                     <div class="input-group input-group-merge">
-                                                        <span class="input-group-text"><i class="bx bx-envelope"></i></span>
-                                                        @Html.TextBoxFor(model => model.EmailAddress, new { @class = "form-control cleardata", @id = "", @name = "", @placeholder = "" })
-                                                        <span id="basic-icon-default-email2" class="input-group-text">example.com</span>
+                                                        <span id="basic-icon-default-fullname2" class="input-group-text"><i class="bx bx-user"></i></span>
+                                                        @Html.TextBoxFor(model => model.LabTestSubTitle_2, new { @class = "form-control cleardata", @id = "", @name = "", @placeholder = "" })
                                                     </div>
-                                                    <div class="form-text"> You can use letters, numbers & periods </div>
+                                                </div>
+                                            </div>
+                                                 <div class="row mb-3">
+                                                <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">LabTest Code</label>
+                                                <div class="col-sm-10">
+                                                    <div class="input-group input-group-merge">
+                                                        <span id="basic-icon-default-fullname2" class="input-group-text"><i class="bx bx-user"></i></span>
+                                                        @Html.TextBoxFor(model => model.LabTestCode, new { @class = "form-control cleardata", @id = "", @name = "", @placeholder = "" })
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="row mb-3">
-                                                <label class="col-sm-2 form-label" for="basic-icon-default-phone">Phone No</label>
+                                                <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">LabTest Price</label>
+                                                <div class="col-sm-10">
+                                                    <div class="input-group input-group-merge">
+                                                        <span id="basic-icon-default-fullname2" class="input-group-text"><i class="bx bx-user"></i></span>
+                                                        @Html.TextBoxFor(model => model.LabTestPrice, new { @class = "form-control cleardata", @id = "", @name = "", @placeholder = "" })
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">LabTest Discount Price</label>
+                                                <div class="col-sm-10">
+                                                    <div class="input-group input-group-merge">
+                                                        <span id="basic-icon-default-fullname2" class="input-group-text"><i class="bx bx-user"></i></span>
+                                                        @Html.TextBoxFor(model => model.LabTestDiscountPrice, new { @class = "form-control cleardata", @id = "", @name = "", @placeholder = "" })
+                                                    </div>
+                                                </div>
+                                            </div>
+                                           
+                                            <div class="row mb-3">
+                                                <label class="col-sm-2 form-label" for="basic-icon-default-phone">LabTest Offer</label>
                                                 <div class="col-sm-10">
                                                     <div class="input-group input-group-merge">
                                                         <span id="basic-icon-default-phone2" class="input-group-text"><i class="bx bx-phone"></i></span>
-                                                        @Html.TextBoxFor(model => model.Phone, new { @class = "form-control cleardata", @id = "", @name = "", @placeholder = "" })
+                                                        @Html.TextBoxFor(model => model.LabTestOffer, new { @class = "form-control cleardata", @id = "", @name = "", @placeholder = "" })
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="row mb-3">
-                                                <label class="col-sm-2 form-label" for="basic-icon-default-phone">Username</label>
+                                                <label class="col-sm-2 form-label" for="basic-icon-default-phone">Visit For Home</label>
                                                 <div class="col-sm-10">
                                                     <div class="input-group input-group-merge">
                                                         <span id="" class="input-group-text"><i class=""></i></span>
-                                                        @Html.TextBoxFor(model => model.UserName, new { @class = "form-control cleardata", @id = "", @name = "", @placeholder = "" })
+                                                        @Html.TextBoxFor(model => model.VisitForHome, new { @class = "form-control cleardata", @id = "", @name = "", @placeholder = "" })
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="row mb-3">
-                                                <label class="col-sm-2 form-label" for="basic-icon-default-phone">Gender</label>
+                                                <label class="col-sm-2 form-label" for="basic-icon-default-phone">Visit For Centre</label>
                                                 <div class="col-sm-10">
                                                     <div class="input-group input-group-merge">
-                                                        <span id="" class="input-group-text"><i class="basic-icon-gender"></i></span>
-@*                                                         @Html.TextBoxFor(model => model.Gender, new { @class = "form-control cleardata", @id = "", @name = "", @placeholder = "" })
-
- *@                                                        @*@Html.TextBoxFor(model => model.Gender, new { @class = "form-control cleardata", @id = "MobileNumber", @name = "MobileNumber", @placeholder = "Enter Mobile Number" })*@
-                                                        @{
-                                                            List<SelectListItem> L1 = new List<SelectListItem>();
-
-                                                            L1.Add(new SelectListItem
-                                                                {
-                                                                    Text = "Male",
-                                                                    Value = "Male"
-                                                                });
-                                                            L1.Add(new SelectListItem
-                                                                {
-                                                                    Text = "Female",
-                                                                    Value = "Female",
-                                                                });
-                                                            L1.Add(new SelectListItem
-                                                                    {
-                                                                        Text = "others",
-                                                                        Value = "others",
-                                                                    });
-                                                        }
-                                                        @Html.DropDownListFor(model => model.Gender, L1, "--choose--", new { @class = "form-control cleardata", @id = "", @onchange = "" })
-                                                        @Html.ValidationMessageFor(model => model.Gender, "", new { @class = "text-danger" })
+                                                        <span id="" class="input-group-text"><i class=""></i></span>
+                                                        @Html.TextBoxFor(model => model.VisitForCentre, new { @class = "form-control cleardata", @id = "", @name = "", @placeholder = "" })
                                                     </div>
                                                 </div>
                                             </div>
+               
 
                                             <div class="row mb-3">
-                                                <label class="col-sm-2 form-label" for="basic-icon-default-phone">Specialization</label>
+                                                <label class="col-sm-2 form-label" for="basic-icon-default-phone">About LabTest_1</label>
                                                 <div class="col-sm-10">
                                                     <div class="input-group input-group-merge">
                                                         <span id="" class="input-group-text"><i class=""></i></span>
-                                                        @Html.TextBoxFor(model => model.Specialization, new { @class = "form-control cleardata", @id = "", @name = "", @placeholder = "" })
+                                                        @Html.TextBoxFor(model => model.AboutLabTest_1, new { @class = "form-control cleardata", @id = "", @name = "", @placeholder = "" })
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="row mb-3">
-                                                <label class="col-sm-2 form-label" for="basic-icon-default-phone">Consultation category</label>
+                                                <label class="col-sm-2 form-label" for="basic-icon-default-phone">About LabTest_2</label>
                                                 <div class="col-sm-10">
                                                     <div class="input-group input-group-merge">
                                                         <span id="" class="input-group-text"><i class=""></i></span>
-                                                        @Html.TextBoxFor(model => model.ConsultationCategory, new { @class = "form-control cleardata", @id = "", @name = "", @placeholder = "" })
+                                                        @Html.TextBoxFor(model => model.AboutLabTest_2, new { @class = "form-control cleardata", @id = "", @name = "", @placeholder = "" })
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="row mb-3">
-                                                <label class="col-sm-2 form-label" for="basic-icon-default-phone">Studies</label>
+                                                <label class="col-sm-2 form-label" for="basic-icon-default-phone">Prerequisites_1</label>
                                                 <div class="col-sm-10">
                                                     <div class="input-group input-group-merge">
                                                         <span id="" class="input-group-text"><i class=""></i></span>
-                                                        @Html.TextBoxFor(model => model.Studies, new { @class = "form-control cleardata", @id = "", @name = "", @placeholder = "" })
+                                                        @Html.TextBoxFor(model => model.Prerequisites_1, new { @class = "form-control cleardata", @id = "", @name = "", @placeholder = "" })
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="row mb-3">
-                                                <label class="col-sm-2 form-label" for="basic-icon-default-phone">Fees</label>
+                                                <label class="col-sm-2 form-label" for="basic-icon-default-phone">Prerequisites_2</label>
                                                 <div class="col-sm-10">
                                                     <div class="input-group input-group-merge">
                                                         <span id="" class="input-group-text"><i class=""></i></span>
-                                                        @Html.TextBoxFor(model => model.ConsultationFees, new { @class = "form-control cleardata", @id = "", @name = "", @placeholder = "" })
+                                                        @Html.TextBoxFor(model => model.Prerequisites_2, new { @class = "form-control cleardata", @id = "", @name = "", @placeholder = "" })
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="row mb-3">
-                                                <label class="col-sm-2 form-label" for="basic-icon-default-phone">Experience</label>
+                                                <label class="col-sm-2 form-label" for="basic-icon-default-phone">DiseasesCovered_1</label>
                                                 <div class="col-sm-10">
                                                     <div class="input-group input-group-merge">
                                                         <span id="" class="input-group-text"><i class=""></i></span>
-                                                        @Html.TextBoxFor(model => model.Experience, new { @class = "form-control cleardata", @id = "", @name = "", @placeholder = "" })
+                                                        @Html.TextBoxFor(model => model.DiseasesCovered_1, new { @class = "form-control cleardata", @id = "", @name = "", @placeholder = "" })
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="row mb-3">
-                                                <label class="col-sm-2 form-label" for="basic-icon-default-phone">City</label>
+                                                <label class="col-sm-2 form-label" for="basic-icon-default-phone">DiseasesCovered_2</label>
                                                 <div class="col-sm-10">
                                                     <div class="input-group input-group-merge">
                                                         <span id="" class="input-group-text"><i class=""></i></span>
-                                                        @Html.TextBoxFor(model => model.City, new { @class = "form-control cleardata", @id = "", @name = "", @placeholder = "" })
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="row mb-3">
-                                                <label class="col-sm-2 form-label" for="basic-icon-default-phone">Languages</label>
-                                                <div class="col-sm-10">
-                                                    <div class="input-group input-group-merge">
-                                                        <span id="" class="input-group-text"><i class=""></i></span>
-                                                        @Html.TextBoxFor(model => model.ProficientLanguage, new { @class = "form-control cleardata", @id = "", @name = "", @placeholder = "For Ex: Kannada,English" })
+                                                        @Html.TextBoxFor(model => model.DiseasesCovered_2, new { @class = "form-control cleardata", @id = "", @name = "", @placeholder = "" })
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="row mb-3">
-                                                <label class="col-sm-2 form-label" for="basic-icon-default-phone">Doctor Bio</label>
+                                                <label class="col-sm-2 form-label" for="basic-icon-default-phone">DiseasesCovered_3</label>
                                                 <div class="col-sm-10">
                                                     <div class="input-group input-group-merge">
                                                         <span id="" class="input-group-text"><i class=""></i></span>
-                                                        @Html.TextBoxFor(model => model.DoctorBio, new { @class = "form-control cleardata", @id = "", @name = "", @placeholder = "" })
+                                                        @Html.TextBoxFor(model => model.DiseasesCovered_3, new { @class = "form-control cleardata", @id = "", @name = "", @placeholder = "" })
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="row mb-3">
-                                                <label class="col-sm-2 form-label" for="basic-icon-default-phone">Doctor Bio_1</label>
+                                                <label class="col-sm-2 form-label" for="basic-icon-default-phone">BodyFunction_1</label>
                                                 <div class="col-sm-10">
                                                     <div class="input-group input-group-merge">
                                                         <span id="" class="input-group-text"><i class=""></i></span>
-                                                        @Html.TextBoxFor(model => model.DoctorBio_1, new { @class = "form-control cleardata", @id = "", @name = "", @placeholder = "" })
+                                                        @Html.TextBoxFor(model => model.BodyFunction_1, new { @class = "form-control cleardata", @id = "", @name = "", @placeholder = "" })
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="row mb-3">
-                                                <label class="col-sm-2 form-label" for="basic-icon-default-phone">Doctor Bio_2</label>
+                                                <label class="col-sm-2 form-label" for="basic-icon-default-phone">BodyFunction_2</label>
                                                 <div class="col-sm-10">
                                                     <div class="input-group input-group-merge">
                                                         <span id="" class="input-group-text"><i class=""></i></span>
-                                                        @Html.TextBoxFor(model => model.DoctorBio_2, new { @class = "form-control cleardata", @id = "", @name = "", @placeholder = "" })
+                                                        @Html.TextBoxFor(model => model.BodyFunction_2, new { @class = "form-control cleardata", @id = "", @name = "", @placeholder = "" })
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="row mb-3">
-                                                <label class="col-sm-2 form-label" for="basic-icon-default-phone">Doctor_Procedure</label>
+                                                <label class="col-sm-2 form-label" for="basic-icon-default-phone">BodyFunction_3</label>
                                                 <div class="col-sm-10">
                                                     <div class="input-group input-group-merge">
                                                         <span id="" class="input-group-text"><i class=""></i></span>
-                                                        @Html.TextBoxFor(model => model.DoctorProcedure, new { @class = "form-control cleardata", @id = "", @name = "", @placeholder = "" })
+                                                        @Html.TextBoxFor(model => model.BodyFunction_3, new { @class = "form-control cleardata", @id = "", @name = "", @placeholder = "" })
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="row mb-3">
-                                                <label class="col-sm-2 form-label" for="basic-icon-default-phone">Doctor_Procedure_1</label>
+                                                <label class="col-sm-2 form-label" for="basic-icon-default-phone">LifeStyle_1</label>
                                                 <div class="col-sm-10">
                                                     <div class="input-group input-group-merge">
                                                         <span id="" class="input-group-text"><i class=""></i></span>
-                                                        @Html.TextBoxFor(model => model.DoctorProcedure_1, new { @class = "form-control cleardata", @id = "", @name = "", @placeholder = "" })
+                                                        @Html.TextBoxFor(model => model.LifeStyle_1, new { @class = "form-control cleardata", @id = "", @name = "", @placeholder = "" })
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="row mb-3">
-                                                <label class="col-sm-2 form-label" for="basic-icon-default-phone">Doctor_Procedure_2</label>
+                                                <label class="col-sm-2 form-label" for="basic-icon-default-phone">LifeStyle_2</label>
                                                 <div class="col-sm-10">
                                                     <div class="input-group input-group-merge">
                                                         <span id="" class="input-group-text"><i class=""></i></span>
-                                                        @Html.TextBoxFor(model => model.DoctorProcedure_2, new { @class = "form-control cleardata", @id = "", @name = "", @placeholder = "" })
-                                                    </div>
-                                                </div>
-                                            </div>
-                                       
-                                            <div class="row mb-3">
-                                                <label class="col-sm-2 form-label" for="basic-icon-default-phone">Doctor Introduction Video Link</label>
-                                                <div class="col-sm-10">
-                                                    <div class="input-group input-group-merge">
-                                                        <span id="" class="input-group-text"><i class=""></i></span>
-                                                        @Html.TextBoxFor(model => model.DoctorIntroVideoLink, new { @class = "form-control cleardata", @id = "", @name = "", @placeholder = "" })
+                                                        @Html.TextBoxFor(model => model.LifeStyle_2, new { @class = "form-control cleardata", @id = "", @name = "", @placeholder = "" })
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="row mb-3">
-                                                <label class="col-sm-2 form-label" for="basic-icon-default-phone">Doctor Profile Image</label>
+                                                <label class="col-sm-2 form-label" for="basic-icon-default-phone">LifeStyle_3</label>
                                                 <div class="col-sm-10">
                                                     <div class="input-group input-group-merge">
                                                         <span id="" class="input-group-text"><i class=""></i></span>
-                                                        @Html.TextBoxFor(model => model.IDoctorProfileImage, "", new { @type = "file", @class = "file-styled upload", @id = "icid", @placeholder = "" })
-                                                        @Html.HiddenFor(model => model.IDoctorProfileImageName, new { @class = "form-control upload" })
-                                                        @Html.HiddenFor(model => model.IDoctorProfileImagePath, new { @class = "form-control upload" })
+                                                        @Html.TextBoxFor(model => model.LifeStyle_3, new { @class = "form-control cleardata", @id = "", @name = "", @placeholder = "" })
                                                     </div>
                                                 </div>
                                             </div>
-
-
-
-
+                                            <div class="row mb-3">
+                                                <label class="col-sm-2 form-label" for="basic-icon-default-phone">LabTest CategoryName</label>
+                                                <div class="col-sm-10">
+                                                    <div class="input-group input-group-merge">
+                                                        <span id="" class="input-group-text"><i class=""></i></span>
+                                                        @Html.TextBoxFor(model => model.LabTestCategoryName, new { @class = "form-control cleardata", @id = "", @name = "", @placeholder = "" })
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <label class="col-sm-2 form-label" for="basic-icon-default-phone">LabTest ReportIn</label>
+                                                <div class="col-sm-10">
+                                                    <div class="input-group input-group-merge">
+                                                        <span id="" class="input-group-text"><i class=""></i></span>
+                                                        @Html.TextBoxFor(model => model.LabTestReportIn, new { @class = "form-control cleardata", @id = "", @name = "", @placeholder = "" })
+                                                    </div>
+                                                </div>
+                                            </div>
+                                           
+                                    
                                             <div class="row justify-content-end">
                                                 <div class="col-sm-10">
                                                     <button type="submit" class="btn btn-success">Submit</button>
@@ -620,7 +610,7 @@
                         <div class="mb-2 mb-md-0">
                             ©made with ❤️ by <a href="https://orbfocushealthcare.com/" target="_blank" class="footer-link fw-medium">Orbfocus Health Care</a>
                         </div>
-              
+
                     </div>
                 </footer>
                 <!-- / Footer -->
@@ -644,13 +634,6 @@
 
     </div>
     <!-- / Layout wrapper -->
-
-
-  
-
-
-
-
     <!-- Core JS -->
     <!-- build:js assets/vendor/js/core.js -->
 
@@ -669,15 +652,15 @@
     <script src="../../assets/vendor/libs/cleavejs/cleave-phone.js"></script>
     <script src="../../assets/vendor/libs/moment/moment.js"></script>
     <script src="../../assets/vendor/libs/flatpickr/flatpickr.js"></script>
-@*     <script src="../../assets/vendor/libs/select2/select2.js"></script>
- *@
+    @*     <script src="../../assets/vendor/libs/select2/select2.js"></script>
+    *@
     <!-- Main JS -->
     <script src="../../assets/js/main.js"></script>
 
 
     <!-- Page JS -->
-@*     <script src="../../assets/js/form-layouts.js"></script>
- *@
+    @*     <script src="../../assets/js/form-layouts.js"></script>
+    *@
 </body>
 
 
