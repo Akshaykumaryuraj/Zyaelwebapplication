@@ -76,7 +76,7 @@ namespace ZyaelWeb.Controllers.InternalDoctors
 
             return View();
         }
-
+      
 
         [HttpPost]
         public async Task<IActionResult> getInternalDoctorsDetails(int pageNumber, int pageSize,int IDoctorID)
