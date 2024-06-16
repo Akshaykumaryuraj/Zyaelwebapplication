@@ -61,9 +61,17 @@ function BindInternalDoctorsGrid(vendor) {
                     return Action;
                 }
             },
-
             {
-                "data": "emailAddress", "name": "emailAddress", orderable: false, "className": "",
+                "data": "specialization", "name": "specialization", orderable: false, "className": "",
+
+            },
+
+            //{
+            //    "data": "emailAddress", "name": "emailAddress", orderable: false, "className": "",
+
+            //},
+            {
+                "data": "city", "name": "city", orderable: false, "className": "",
 
             },
 
