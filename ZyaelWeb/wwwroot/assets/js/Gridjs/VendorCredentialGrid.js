@@ -55,7 +55,7 @@ function BindVendorsCredentialGrid(vendor) {
             },
 
             {
-                "data": "userName", "name": "userName", orderable: false, "className": "",
+                "data": "firstName", "name": "firstName", orderable: false, "className": "",
 
             },
             {

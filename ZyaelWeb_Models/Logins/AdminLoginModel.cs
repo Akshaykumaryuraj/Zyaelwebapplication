@@ -17,6 +17,7 @@ namespace ZyaelWeb_Models.Logins
         public string Password { get; set; }
         public string Vendor { get; set; }
         public bool status { get; set; }
+        public bool isActive { get; set; }
 
 
     }
@@ -24,7 +25,7 @@ namespace ZyaelWeb_Models.Logins
     {
         public int TotalrowCount { get; set; }
         public string Email { get; set; }
-        public string UserName { get; set; }
+        public string FirstName { get; set; }
         public string specialization { get; set; }
         public string status { get; set; }
         public int VendorUserID { get; set; }
