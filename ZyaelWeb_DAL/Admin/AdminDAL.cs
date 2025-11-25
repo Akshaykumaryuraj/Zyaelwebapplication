@@ -121,8 +121,9 @@ namespace ZyaelWeb_DAL.Admin
                                 SpecialityID = item.SpecialityID,
                                 SpecialityName = item.SpecialityName,
                                 SpecialityCode = item.SpecialityCode,
-                                Symptoms = item.Symptoms,
-                                status=item.status
+                                SpecialityProfileImageName = item.SpecialityProfileImageName,
+                                SpecialityProfileImagePath = item.SpecialityProfileImagePath,
+                                Priority = item.Priority
 
                             };
                     var response = await con.ExecuteScalarAsync<int>("Sp_SetMastersSpecialitiesDetails", Param, commandType: System.Data.CommandType.StoredProcedure);
@@ -183,6 +184,89 @@ namespace ZyaelWeb_DAL.Admin
                             SpecialityID = item.SpecialityID
                         };
                     var response = await con.ExecuteScalarAsync<int>("SP_setSpecilizationStatus", Param, commandType: System.Data.CommandType.StoredProcedure);
+                    return response;
+                }
+            }
+            catch (Exception ex)
+            {
+                return -1;
+            }
+        }
+
+
+
+        public async Task<DoctorProfileModel> VendorProfileDetailsAdd(int DoctorID)
+        {
+            try
+            {
+
+                using (SqlConnection con = GetConnection())
+                {
+                    con.Open();
+                    var Param =
+                        new
+                        {
+                            DoctorID = DoctorID
+
+                        };
+                    return (await con.QueryAsync<DoctorProfileModel>("SP_getSpecilizationDetailsByID", Param, commandType: System.Data.CommandType.StoredProcedure)).FirstOrDefault();
+                }
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+
+
+        public async Task<int> VendorProfileDetails_InsertUpdate(DoctorProfileModel item)
+        {
+
+            try
+            {
+                using (SqlConnection con = GetConnection())
+                {
+                    con.Open();
+                    var Param =
+                            new
+
+                            {
+                                DoctorID = item.DoctorID,
+                                DoctorPId = item.DoctorPId,
+                                FirstName = item.FirstName,
+                                //LastName = item.LastName,
+                                status = item.status
+
+
+                            };
+                    var response = await con.ExecuteScalarAsync<int>("Sp_SetMastersSpecialitiesDetails", Param, commandType: System.Data.CommandType.StoredProcedure);
+                    return response;
+                }
+            }
+            catch (Exception ex)
+            {
+                return -1;
+            }
+
+
+        }
+
+
+        public async Task<int> SetSpecilizationPriority(SpecialitiesModel item)
+        {
+            try
+            {
+                using (SqlConnection con = GetConnection())
+                {
+                    con.Open();
+                    var Param =
+                        new
+                        {
+                            Priority = item.Priority,
+                            SpecialityID = item.SpecialityID
+                        };
+                    var response = await con.ExecuteScalarAsync<int>("SP_setSpecilizationPriority", Param, commandType: System.Data.CommandType.StoredProcedure);
                     return response;
                 }
             }

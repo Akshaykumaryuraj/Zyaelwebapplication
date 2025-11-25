@@ -13,7 +13,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 
-    <title>Vendors Details| Zyael</title>
+    <title>DC Doctor Profile Details| Zyael</title>
 
 
     <meta name="description" content="Most Powerful &amp; Comprehensive Bootstrap 5 HTML Admin Dashboard Template built for developers!" />
@@ -22,7 +22,7 @@
     <link rel="canonical" href="https://themeselection.com/item/sneat-aspnet-core-mvc-admin-template/">
 
 
-    
+
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="https://demos.themeselection.com/sneat-aspnet-core-mvc-admin-template/assets/img/favicon/favicon.ico" />
 
@@ -51,7 +51,7 @@
     <link rel="stylesheet" href="../../assets/vendor/libs/flatpickr/flatpickr.css" />
     <!-- Row Group CSS -->
     <link rel="stylesheet" href="~/assets/vendor/libs/datatables-rowgroup-bs5/rowgroup.bootstrap5.css">
-   
+
 
     <!-- Page CSS -->
     <!-- Helpers -->
@@ -109,7 +109,7 @@
 <body>
 
 
-   
+
     <!-- Layout wrapper -->
     <div class="layout-wrapper layout-content-navbar  ">
         <div class="layout-container">
@@ -164,124 +164,23 @@
                     <li class="menu-item active">
                         <a href="javascript:void(0);" class="menu-link menu-toggle">
                             <i class="menu-icon tf-icons bx bx-grid"></i>
-                            <div class="text-truncate" data-i18n="Vendors Profile">Vendors Profile</div>
+                            <div class="text-truncate" data-i18n="Doctor Profile">Doctor Profile</div>
                         </a>
                         <ul class="menu-sub">
                             <li class="menu-item active">
-                                <a href="/Admin/VendorsCredentialGrid" class="menu-link">
-                                    <div class="text-truncate" data-i18n="Vendors Approvals">Vendors Approvals</div>
+                                <a href="/DCAdmin/DCDoctorProfileGrid" class="menu-link">
+                                    <div class="text-truncate" data-i18n="Doctor Profile">Doctor Profile</div>
                                 </a>
                             </li>
-                            <li class="menu-item">
-                                <a href="#" class="menu-link">
-                                    <div class="text-truncate" data-i18n="Vendor Documents">Vendor Documents</div>
-                                </a>
-                            </li>
-                            <li class="menu-item">
-                                <a href="#" class="menu-link">
-                                    <div class="text-truncate" data-i18n="Vendor Payments">Vendor Payments</div>
-                                </a>
-                            </li>
+                           
                         </ul>
-                    </li>
-
-                    <li class="menu-item">
-                        <a href="javascript:void(0);" class="menu-link menu-toggle">
-                            <i class="menu-icon tf-icons bx bx-grid"></i>
-                            <div class="text-truncate" data-i18n="Masters">Masters</div>
-                        </a>
-                        <ul class="menu-sub">
-                            <li class="menu-item">
-                                <a href="/Admin/SpecializationsGrid" class="menu-link">
-                                    <div class="text-truncate" data-i18n="Specializations">Specializations</div>
-                                </a>
-                            </li>
-                            <li class="menu-item">
-                                <a href="#" class="menu-link">
-                                    <div class="text-truncate" data-i18n="Symptoms">Symptoms</div>
-                                </a>
-                            </li>
-
-                        </ul>
-                    </li>
-
-                    <li class="menu-item">
-                        <a href="javascript:void(0);" class="menu-link menu-toggle">
-                            <i class="menu-icon tf-icons bx bx-grid"></i>
-                            <div class="text-truncate" data-i18n="Vendor User Details">Vendors User Details</div>
-                        </a>
-                        <ul class="menu-sub">
-                            <li class="menu-item">
-                                <a href="#" class="menu-link">
-                                    <div class="text-truncate" data-i18n="Digital Consultation">Digital Consultation</div>
-                                </a>
-                            </li>
-                            <li class="menu-item">
-                                <a href="#" class="menu-link">
-                                    <div class="text-truncate" data-i18n="Hospitals">Hospitals</div>
-                                </a>
-                            </li>
-                            <li class="menu-item">
-                                <a href="#" class="menu-link">
-                                    <div class="text-truncate" data-i18n="Clinics">Clinics</div>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-
-                    <li class="menu-item">
-                        <a href="javascript:void(0);" class="menu-link menu-toggle">
-                            <i class="menu-icon tf-icons bx bx-grid"></i>
-                            <div class="text-truncate" data-i18n="Vendor Notifications">Push Notifications</div>
-                        </a>
-                        <ul class="menu-sub">
-                            <li class="menu-item">
-                                <a href="#" class="menu-link">
-                                    <div class="text-truncate" data-i18n="Digital Consultation">Digital Consultation</div>
-                                </a>
-                            </li>
-                            <li class="menu-item">
-                                <a href="#" class="menu-link">
-                                    <div class="text-truncate" data-i18n="Hospitals">Hospitals</div>
-                                </a>
-                            </li>
-                            <li class="menu-item">
-                                <a href="#" class="menu-link">
-                                    <div class="text-truncate" data-i18n="Clinics">Clinics</div>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-
-                    <!-- Charts & Maps -->
-                    <li class="menu-header small text-uppercase">
-                        <span class="menu-header-text" data-i18n="Charts & Maps">Charts &amp; Maps</span>
                     </li>
                     <li class="menu-item">
-                        <a href="javascript:void(0);" class="menu-link menu-toggle">
-                            <i class="menu-icon tf-icons bx bx-chart"></i>
-                            <div class="text-truncate" data-i18n="Charts">Charts</div>
+                        <a href="#" class="menu-link">
+                            <div class="text-truncate" data-i18n="Doctor">Doctor Activation</div>
                         </a>
-                        <ul class="menu-sub">
-                            <li class="menu-item">
-                                <a href="charts-apex.html" class="menu-link">
-                                    <div class="text-truncate" data-i18n="Apex Charts">Apex Charts</div>
-                                </a>
-                            </li>
-                            <li class="menu-item">
-                                <a href="charts-chartjs.html" class="menu-link">
-                                    <div class="text-truncate" data-i18n="ChartJS">ChartJS</div>
-                                </a>
-                            </li>
-                        </ul>
                     </li>
-                    @*  <li class="menu-item">
-                    <a href="maps-leaflet.html" class="menu-link">
-                    <i class="menu-icon tf-icons bx bx-map-alt"></i>
-                    <div class="text-truncate" data-i18n="Leaflet Maps">Leaflet Maps</div>
-                    </a>
-                    </li> *@
-
+                
 
                 </ul>
 
@@ -429,32 +328,19 @@
 
 
                         <h4 class="py-3 mb-4">
-                            <span class="text-muted fw-light">DataTables /</span> Vendors credentials
-                            <center>
-                                <div class="dropdown">
-                                    <button class="dropbtn breadcrumb-item">Select Vendors</button>
-                                    <div id="myDropdown" class="dropdown-content">
-                                        <a href="#" onclick="BindVendorsCredentialGrid('Digital Consultation')">Digital Consultation</a>
-                                        <a href="#" onclick="BindVendorsCredentialGrid('Hospitals')">Hospitals</a>
-                                        <a href="#" onclick="BindVendorsCredentialGrid('Clinics')">Clinics</a>
-                                        <a href="#" onclick="BindVendorsCredentialGrid('Diagnostic Labs')">Diagnostic Labs</a>
-                                        <a href="#" onclick="BindVendorsCredentialGrid('Labs')">Labs</a>
-                                    </div>
-                                </div>
-                            </center>
+                            <span class="text-muted fw-light">DataTables /</span> Doctors Profile
 
                         </h4>
 
                         <!-- DataTable with Buttons -->
                         <div class="card">
                             <div class="card-datatable table-responsive">
-                                <table class="datatables-basic table border-top" id="Vendorcredentialgrid">
+                                <table class="datatables-basic table border-top" id="DCDoctorProfileGrid">
                                     <thead>
                                         <tr>
                                             <th> # </th>
-                                            <th>First Name </th>
-                                            <th>Specialization</th>
-                                            <th> Email ID </th>
+                                            <th>Phone Number </th>
+                                            <th>ConsultationCategory</th>
                                             <th> OTP</th>
                                             <th> Status </th>
                                             <th> Action </th>
@@ -462,7 +348,6 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-
                                     </tbody>
                                 </table>
                             </div>
@@ -525,7 +410,7 @@
 
                         <hr class="my-5">
 
-                    
+
 
                     </div>
                     <!-- / Content -->
@@ -559,7 +444,6 @@
 
     </div>
     <!-- / Layout wrapper -->
-
     <!-- Core JS -->
     <!-- build:js assets/vendor/js/core.js -->
 
@@ -574,12 +458,12 @@
 
     <!-- endbuild -->
     <!-- Vendors JS -->
-@*     <script src="~/assets/vendor/libs/datatables-bs5/datatables-bootstrap5.js"></script>
- *@
+    @*     <script src="~/assets/vendor/libs/datatables-bs5/datatables-bootstrap5.js"></script>
+    *@
     <!-- Flat Picker -->
     <script src="~/assets/vendor/libs/moment/moment.js"></script>
     <script src="~/assets/vendor/libs/flatpickr/flatpickr.js"></script>
- 
+
 
     <!-- Main JS -->
     <script src="~/assets/js/main.js"></script>
@@ -591,7 +475,7 @@
     <script src="~/datatables.net/js/jquery.datatables.min.js"></script>
     <script src="~/assets/js/tables-datatables-basic.js"></script>
 
-    <script src="~/assets/js/gridjs/vendorcredentialgrid.js"></script>
+    <script src="~/assets/js/gridjs/DCDoctorProfileGrid.js"></script>
 
 </body>
 

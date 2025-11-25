@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,6 +19,10 @@ namespace ZyaelWeb_Models.Admins
             public string message { get; set; }
             public string Symptoms { get; set; }
             public bool status { get; set; }
-        }
-    
+        public string SpecialityProfileImageName { get; set; }
+        public string SpecialityProfileImagePath { get; set; }
+        public IFormFile SpecialityProfileImage { get; set; }
+        public bool Priority { get; set; }
+    }
+  
 }

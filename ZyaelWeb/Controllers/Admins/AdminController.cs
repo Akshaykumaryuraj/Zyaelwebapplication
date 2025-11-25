@@ -5,6 +5,7 @@ using ZyaelWeb_Models.Admins;
 using ZyaelWeb_Services.Admins;
 using ZyaelWeb_Services.InternalDoctor;
 using IHostingEnvironment = Microsoft.AspNetCore.Hosting.IHostingEnvironment;
+using System.Net.Http.Headers;
 
 namespace ZyaelWeb.Controllers.Admins
 {
@@ -61,6 +62,38 @@ namespace ZyaelWeb.Controllers.Admins
         }
 
 
+
+
+
+        [HttpGet]
+        public async Task<IActionResult> VendorProfileDetailsAdd(int DoctorID)
+        {
+            DoctorProfileModel item = new DoctorProfileModel();
+
+            if (DoctorID > 0)
+            {
+                item = await _admin.VendorProfileDetailsAdd(DoctorID);
+
+                item.DoctorID = DoctorID;
+            }
+
+            return View(item);
+        }
+
+
+
+        [HttpPost]
+        public async Task<IActionResult> VendorProfileDetails_InsertUpdate(DoctorProfileModel item)
+        {
+            DoctorProfileModel test = new DoctorProfileModel();
+
+            var result = await _admin.VendorProfileDetails_InsertUpdate(item);
+
+            return RedirectToAction("VendorsCredentialGrid", "Admin");
+
+        }
+
+
         [HttpPost]
         public async Task<IActionResult> SetVendorsLoginStatus(AdminLoginModel item)
         {
@@ -90,6 +123,40 @@ namespace ZyaelWeb.Controllers.Admins
         public async Task<IActionResult> SpecialitiesDetails_InsertUpdate(SpecialitiesModel item)
         {
             SpecialitiesModel test = new SpecialitiesModel();
+            if (item.SpecialityProfileImage != null)
+            {
+                try
+                {
+                    var samplefilepath = $"{this._hostingEnvironment.ContentRootPath}" + "/" + "SpecialityProfileImageUpload" + "/" + "SpecialityProfileImage" + "/";
+                    var fileName = ContentDispositionHeaderValue.Parse(item.SpecialityProfileImage.ContentDisposition).FileName;
+                    var filesize = ContentDispositionHeaderValue.Parse(item.SpecialityProfileImage.ContentDisposition).Size;
+                    fileName = fileName.Contains("\\")
+                     ? fileName.Trim('"').Substring(fileName.LastIndexOf("\\", StringComparison.Ordinal) + 1)
+                    : fileName.Trim('"');
+                    if (!Directory.Exists(samplefilepath))
+                    {
+                        Directory.CreateDirectory(samplefilepath);
+                    }
+                    var extension = Path.GetExtension(fileName);
+                    var FileGuid = Guid.NewGuid();
+                    var fullFilePath = Path.Combine(
+                        "SpecialityProfileImageUpload" + "/",
+                        FileGuid + extension);
+                    item.SpecialityProfileImagePath = "/" + "SpecialityProfileImage" + "/" + FileGuid + extension;
+                    item.SpecialityProfileImageName = fileName;
+                    using (var stream = new FileStream(fullFilePath, FileMode.Create))
+                    {
+                        await item.SpecialityProfileImage.CopyToAsync(stream);
+                    }
+                    item.SpecialityProfileImagePath = "https://zyael-api.scm.azurewebsites.net/api/vfs/site/wwwroot/" + fullFilePath;
+                }
+                catch (Exception ex)
+                {
+                    item.SpecialityProfileImageName = "";
+                }
+            }
+
+
 
             var result = await _admin.SpecialitiesDetails_InsertUpdate(item);
 
@@ -130,6 +197,14 @@ namespace ZyaelWeb.Controllers.Admins
         public async Task<IActionResult> SetSpecilizationStatus(SpecialitiesModel item)
         {
             var result = await _admin.SetSpecilizationStatus(item);
+            return Json(result);
+        }
+
+
+        [HttpPost]
+        public async Task<IActionResult> SetSpecilizationPriority(SpecialitiesModel item)
+        {
+            var result = await _admin.SetSpecilizationPriority(item);
             return Json(result);
         }
     }

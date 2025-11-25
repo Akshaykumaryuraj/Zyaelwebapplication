@@ -1,4 +1,5 @@
-﻿
+﻿/// <reference path="../app-academy-course.js" />
+
 $(document).ready(function () {
     debugger
     var datatable = $('#Vendorcredentialgrid').dataTable();
@@ -67,11 +68,14 @@ function BindVendorsCredentialGrid(vendor) {
                 "data": "email", "name": "email", orderable: false, "className": "",
 
             },
+            //{
+            //    "data": "city", "name": "city", orderable: false, "className": "",
+
+            //},
             {
-                "data": "city", "name": "city", orderable: false, "className": "",
+                "data": "otp", "name": "otp", orderable: false, "className": "",
 
             },
-
 
             {
                 "data": "status", "name": "status", orderable: false, "className": "",
@@ -91,10 +95,11 @@ function BindVendorsCredentialGrid(vendor) {
                 "data": "action", sorting: false, orderable: false, "className": "table-actions",
                 "render": function (data, type, row, meta) {
                     var Action = '';
-                    Action += '<a href="#" onclick="ProfileHeadDetailsDelete(' + row.idOCTORid + ')"><img src="/images/edit.png"/></a>';
+                    Action += '<a href="/Admin/VendorProfileDetailsAdd?ID=' + row.id + ' "><img src="/images/edit.png"/></a>';
                     Action += '<a href="#" onclick="ProfileHeadDetailsDelete(' + row.idOCTORid + ')"><img src="/images/delete.png"/></a>';
                     return Action;
                 }
+
 
             }
         ]

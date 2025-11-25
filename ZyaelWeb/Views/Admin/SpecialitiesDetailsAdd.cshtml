@@ -386,8 +386,8 @@
 
 
                         <h4 class="py-3 mb-4"><span class="text-muted fw-light">Form/</span>Specialization Details</h4>
-                        <input type="hidden" name="HospitalVendorID" value="@ViewBag.UserTypeId" id="hdnhospitalvendorid" />
-
+@*                         <input type="hidden" name="HospitalVendorID" value="@ViewBag.UserTypeId" id="hdnhospitalvendorid" />
+ *@
                         <!-- Basic Layout & Basic with Icons -->
                         <div class="row">
 
@@ -399,6 +399,7 @@
                                     </div>
                                     <div class="card-body">
                                         <form asp-action="SpecialitiesDetails_InsertUpdate" asp-controller="Admin" class="" data-ajax="true" data-ajax-method="post" id="" data-ajax-success="onSuccess" enctype="multipart/form-data">
+                                            @Html.HiddenFor(model => model.SpecialityID, new { @id = "" })
 
                                             <div class="row mb-3">
                                                 <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Specialization Name</label>
@@ -418,8 +419,13 @@
                                                     </div>
                                                 </div>
                                             </div>
-
-
+                                            <div class="row mb-3">
+                                                <label class="custom-control-label" for="customCheck1">Specialization Image</label>
+                                                @Html.TextBoxFor(model => model.SpecialityProfileImage, "", new { @type = "file", @class = "file-styled upload", @id = "markscardid", @placeholder = "" })
+                                                @Html.HiddenFor(model => model.SpecialityProfileImageName, new { @class = "form-control upload" })
+                                                @Html.HiddenFor(model => model.SpecialityProfileImagePath, new { @class = "form-control upload" })
+                                            </div>
+                                          
                                             <div class="row justify-content-end">
                                                 <div class="col-sm-10">
                                                     @if (Model.SpecialityID > 0)

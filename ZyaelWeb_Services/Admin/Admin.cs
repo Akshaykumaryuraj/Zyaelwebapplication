@@ -104,5 +104,47 @@ namespace ZyaelWeb_Services.Admins
                 return -1;
             }
         }
+
+
+        public async Task<DoctorProfileModel> VendorProfileDetailsAdd(int DoctorID)
+        {
+            try
+            {
+                var result = await _admindal.VendorProfileDetailsAdd(DoctorID);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+
+        public async Task<int> VendorProfileDetails_InsertUpdate(DoctorProfileModel item)
+        {
+            try
+            {
+                var result = await _admindal.VendorProfileDetails_InsertUpdate(item);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                return -1;
+            }
+        }
+
+
+        public async Task<int> SetSpecilizationPriority(SpecialitiesModel item)
+        {
+            try
+            {
+                var result = await _admindal.SetSpecilizationPriority(item);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                return -1;
+            }
+        }
     }
 }

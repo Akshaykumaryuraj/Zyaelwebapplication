@@ -30,6 +30,7 @@ namespace ZyaelWeb_Models.Logins
         public string status { get; set; }
         public int VendorUserID { get; set; }
         public string City { get; set; }
+        public int OTP { get; set; }
         public int ID { get; set; }
 
     }
