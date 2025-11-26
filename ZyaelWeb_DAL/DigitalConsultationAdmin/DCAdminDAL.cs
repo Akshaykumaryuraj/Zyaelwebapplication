@@ -214,7 +214,7 @@ namespace ZyaelWeb_DAL.DigitalConsultationAdmin
             }
         }
 
-        public async Task<int> SetDoctorOnlineStatus(DoctorActivationModel item)
+        public async Task<int> SetDoctorGoLiveStatus(DoctorActivationModel item)
         {
             try
             {
@@ -224,10 +224,10 @@ namespace ZyaelWeb_DAL.DigitalConsultationAdmin
                     var Param =
                         new
                         {
-                            status = item.status,
+                            goLive = item.goLive,
                             DoctorID = item.DoctorID
                         };
-                    var response = await con.ExecuteScalarAsync<int>("SP_SetWebDoctorOnlineStatus", Param, commandType: System.Data.CommandType.StoredProcedure);
+                    var response = await con.ExecuteScalarAsync<int>("SP_SetWebDoctorgoLiveStatus", Param, commandType: System.Data.CommandType.StoredProcedure);
                     return response;
                 }
             }

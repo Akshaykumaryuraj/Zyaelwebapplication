@@ -61,6 +61,7 @@ namespace ZyaelWeb_Models.DigitalConsultationAdmin
     public class DoctorActivationModel
     {
         public bool status { get; set; }
+        public bool goLive { get; set; }
         public bool isActive { get; set; }
         public int DoctorID { get; set; }
         public int DCDOTP { get; set; }

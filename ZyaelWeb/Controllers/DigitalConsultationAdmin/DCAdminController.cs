@@ -126,9 +126,9 @@ namespace ZyaelWeb.Controllers.DigitalConsultationAdmin
 
 
         [HttpPost]
-        public async Task<IActionResult> SetDoctorOnlineStatus(DoctorActivationModel item)
+        public async Task<IActionResult> SetDoctorGoLiveStatus(DoctorActivationModel item)
         {
-            var result = await _dcadmin.SetDoctorOnlineStatus(item);
+            var result = await _dcadmin.SetDoctorGoLiveStatus(item);
             return Json(result);
         }
     }

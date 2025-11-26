@@ -102,11 +102,11 @@ namespace ZyaelWeb_Services.DigitalConsultationAdmin
             }
         }
 
-        public async Task<int> SetDoctorOnlineStatus(DoctorActivationModel item)
+        public async Task<int> SetDoctorGoLiveStatus(DoctorActivationModel item)
         {
             try
             {
-                var result = await _dcadmindal.SetDoctorOnlineStatus(item);
+                var result = await _dcadmindal.SetDoctorGoLiveStatus(item);
                 return result;
             }
             catch (Exception ex)

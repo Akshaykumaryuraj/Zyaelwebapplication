@@ -63,17 +63,31 @@ function BindDCDoctorProfileGrid() {
 
             },
             
+            //{
+            //    "data": "status", "name": "status", orderable: false, "className": "",
+            //    "render": function (data, type, row, meta) {
+            //        var status = '';
+            //        status += '<label class="switch">';
+            //        status += '<input type="checkbox" ' + (row.status == true ? "checked" : "") + ' id="rowstatus' + row.doctorPId + '"  onclick="setStatus(' + row.doctorPId + ');">';
+            //        //status += '<span class="slider round"></span>';
+            //        status += '</label>';
+
+
+            //        return status;
+            //    }
+            //},
             {
-                "data": "status", "name": "status", orderable: false, "className": "",
-                "render": function (data, type, row, meta) {
-                    var status = '';
-                    status += '<label class="switch">';
-                    status += '<input type="checkbox" ' + (row.status == true ? "checked" : "") + ' id="rowstatus' + row.doctorPId + '"  onclick="setStatus(' + row.doctorPId + ');">';
-                    //status += '<span class="slider round"></span>';
-                    status += '</label>';
-
-
-                    return status;
+                "data": "status",
+                "name": "status",
+                orderable: false,
+                "className": "",
+                "render": function (data, type, full, meta) {
+                    var checked = data ? "checked" : "";
+                    return `
+        <label class="switch">
+            <input type="checkbox" class="profilestatusCheckbox" ${checked} data-id="${full.doctorPId}" />
+            <span class="slider round"></span>
+        </label>`;
                 }
             },
             
@@ -92,29 +106,101 @@ function BindDCDoctorProfileGrid() {
     });
 }
 
-function setStatus(doctorPId) {
-    debugger
-    var status = $('#rowstatus' + doctorPId).is(':checked');
-    //var status = $('#checkstatus').prop('checked');
-    var form_data = new FormData();
-    form_data.append("status", status);
-    form_data.append("DoctorPId", doctorPId);
+
+$('#DCDoctorProfileGrid').on('change', '.profilestatusCheckbox', function () {
+    var $toggle = $(this);
+    var doctorPId = $toggle.data('id');
+    var status = $toggle.is(':checked');
+
+    var message = status
+        ? "Are you sure you want to set this doctor Profile Online?"
+        : "Are you sure you want to set this doctor Profile Offline?";
+
+    if (!confirm(message)) {
+        $toggle.prop('checked', !status);
+        return;
+    }
+
     $.ajax({
         type: "POST",
         url: "/DCAdmin/SetDoctorProfileStatus",
-        dataType: "JSON",
-        data: form_data,
-        cache: false,
-        contentType: false,
-        processData: false,
+        data: { DoctorPId: doctorPId, status: status },
+        dataType: "json",
         success: function (response) {
             if (response > 0) {
-                window.location.href = 'DCAdmin/DCDoctorProfileGrid'
+                alert("Profile status updated successfully.");
+            } else {
+                alert("Doctor is inactive. Profile status not updated.");
+                // rollback toggle if inactive
+                $toggle.prop('checked', !status);
             }
+
+            // ✅ Always refresh DataTable
+            $('#DCDoctorProfileGrid').DataTable().ajax.reload(null, false);
+        },
+        error: function () {
+            $toggle.prop('checked', !status);
+            alert("Failed to update status");
         }
     });
+});
 
-}
+
+//$('#DCDoctorProfileGrid').on('change', '.profilestatusCheckbox', function () {
+//    var $toggle = $(this);
+//    var doctorPId = $toggle.data('id');
+//    var status = $toggle.is(':checked');
+
+//    var message = status
+//        ? "Are you sure you want to set this doctor Profile Online?"
+//        : "Are you sure you want to set this doctor Profile Offline?";
+
+//    if (!confirm(message)) {
+//        $toggle.prop('checked', !status);
+//        return;
+//    }
+
+//    $.ajax({
+//        type: "POST",
+//        url: "/DCAdmin/SetDoctorProfileStatus",
+//        data: { DoctorPId: doctorPId, status: status },
+//        dataType: "json",
+//        success: function (response) {
+//            if (response > 0) {
+//                $('#DCDoctorProfileGrid').DataTable().ajax.reload(null, false);
+//            }
+//        },
+//        error: function () {
+//            $toggle.prop('checked', !status);
+//            alert("Failed to update status");
+//        }
+//    });
+//});
+
+
+//function setStatus(doctorPId) {
+//    debugger
+//    var status = $('#rowstatus' + doctorPId).is(':checked');
+//    //var status = $('#checkstatus').prop('checked');
+//    var form_data = new FormData();
+//    form_data.append("status", status);
+//    form_data.append("DoctorPId", doctorPId);
+//    $.ajax({
+//        type: "POST",
+//        url: "/DCAdmin/SetDoctorProfileStatus",
+//        dataType: "JSON",
+//        data: form_data,
+//        cache: false,
+//        contentType: false,
+//        processData: false,
+//        success: function (response) {
+//            if (response > 0) {
+//                window.location.href = 'DCAdmin/DCDoctorProfileGrid'
+//            }
+//        }
+//    });
+
+//}
 function setPriority(specialityID) {
     debugger
     var priority = $('#rowpriority' + specialityID).is(':checked');
