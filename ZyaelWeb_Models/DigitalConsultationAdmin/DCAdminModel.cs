@@ -70,4 +70,15 @@ namespace ZyaelWeb_Models.DigitalConsultationAdmin
 
 
     }
+
+    public class ConsultationSlotDateModel
+    {
+
+        public bool Available { get; set; }
+        public string Time { get; set; }
+        public int DoctorID { get; set; }
+
+        public DateTime Date { get; set; }
+
+    }
 }

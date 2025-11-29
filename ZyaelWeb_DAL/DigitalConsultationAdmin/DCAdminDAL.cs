@@ -237,5 +237,56 @@ namespace ZyaelWeb_DAL.DigitalConsultationAdmin
             }
         }
 
+
+
+        public async Task<List<ConsultationSlotDateModel>> GetDoctorSlotsByDateandID(int DoctorID, DateTime Date)
+        {
+           
+                try
+                {
+                    using (SqlConnection con = GetConnection())
+                    {
+                        con.Open();
+                        var Param =
+                                new
+                            {
+                                DoctorID = DoctorID,
+                                Date = Date
+
+                            };
+                    return (await con.QueryAsync<ConsultationSlotDateModel>("SP_GetDoctorSlotsByDate", Param, commandType: System.Data.CommandType.StoredProcedure)).ToList();
+
+
+                }
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+        public async Task<List<ConsultationSlotDateModel>> GetAvailableSlots(int DoctorID)
+        {
+            try
+            {
+                using (SqlConnection con = GetConnection())
+                {
+                    con.Open();
+                    var Param =
+                            new
+                            {
+                                DoctorID = DoctorID
+
+                            };
+                    return (await con.QueryAsync<ConsultationSlotDateModel>("Sp_GetAvailableSlotDetailsByDoctorId", Param, commandType: System.Data.CommandType.StoredProcedure)).ToList();
+
+
+                }
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
     }
 }

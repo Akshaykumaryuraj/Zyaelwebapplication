@@ -74,6 +74,21 @@ namespace ZyaelWeb.Controllers.DigitalConsultationAdmin
             return View(item);
         }
 
+        [HttpGet]
+        public async Task<IActionResult> GetDoctorProfileDetails(int DoctorPId)
+        {
+            DoctorProfileModel item = new DoctorProfileModel();
+
+            if (DoctorPId > 0)
+            {
+                item = await _dcadmin.DCDProfileDetailsAdd(DoctorPId);
+
+                item.DoctorPId = DoctorPId;
+            }
+
+            return Json(item);
+        }
+
 
         [HttpPost]
         public async Task<IActionResult> DCDoctorProfileDetails_InsertUpdate(DoctorProfileModel item)
@@ -131,6 +146,30 @@ namespace ZyaelWeb.Controllers.DigitalConsultationAdmin
             var result = await _dcadmin.SetDoctorGoLiveStatus(item);
             return Json(result);
         }
+
+
+
+        [HttpGet]
+        public async Task<IActionResult> GetDoctorSlotsByDateandID(int DoctorPId, DateTime Date)
+        {
+            List<ConsultationSlotDateModel> result = new List<ConsultationSlotDateModel>();
+            result = await _dcadmin.GetDoctorSlotsByDateandID(DoctorPId, Date);
+            return Json(result);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetAvailableSlots(int DoctorPId)
+        {
+            List<ConsultationSlotDateModel> item = new List<ConsultationSlotDateModel>();
+            if (DoctorPId > 0)
+            {
+                item = await _dcadmin.GetAvailableSlots(DoctorPId);
+            }
+
+            return Json(item);
+        }
+
+
     }
 }
 

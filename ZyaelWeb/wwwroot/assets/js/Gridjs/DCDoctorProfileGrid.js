@@ -63,19 +63,7 @@ function BindDCDoctorProfileGrid() {
 
             },
             
-            //{
-            //    "data": "status", "name": "status", orderable: false, "className": "",
-            //    "render": function (data, type, row, meta) {
-            //        var status = '';
-            //        status += '<label class="switch">';
-            //        status += '<input type="checkbox" ' + (row.status == true ? "checked" : "") + ' id="rowstatus' + row.doctorPId + '"  onclick="setStatus(' + row.doctorPId + ');">';
-            //        //status += '<span class="slider round"></span>';
-            //        status += '</label>';
-
-
-            //        return status;
-            //    }
-            //},
+           
             {
                 "data": "status",
                 "name": "status",
@@ -91,20 +79,186 @@ function BindDCDoctorProfileGrid() {
                 }
             },
             
+           
+
             {
-                "data": "status", sorting: false, orderable: false, "className": "table-actions",
+                "data": "Slots",
+                "name": "Slots",
+                orderable: false,
+                "className": "",
                 "render": function (data, type, row, meta) {
+                    return '<button type="button" class="viewDoctorSlotBtn btn btn-primary" data-id="' + row.doctorPId + '">Slots</button>';
+                }
+            },
+
+            {
+                "data": "status", sorting: false, orderable: false, "className": "table-actions", "render": function (data, type, row, meta) {
                     var Action = '';
-                    Action += '<a href="/DCAdmin/DCDProfileDetailsAdd?DoctorPId=' + row.doctorPId + ' "><img src="/images/edit.png"/></a>';
-                    //Action += '<a href="/DCAdmin/DCDProfileDetailsAdd?DoctorID=' + row.doctorID + ' "><img src="/images/edit.png"/></a>';
-                    //Action += '<a href="#" onclick="CampusCredentialDetailsDelete(' + row.specialityID + ')"><img src="/images/delete.png"/></a>';
+                    Action += '<a class="viewDoctorBtn me-2" data-id="' + row.doctorPId + '"><img src="/images/eye.png"/></a> '; // Existing edit button 
+                    Action += '<a href="/DCAdmin/DCDProfileDetailsAdd?DoctorPId=' + row.doctorPId + '"><img src="/images/edit.png"/></a>';
                     return Action;
                 }
 
-            }
+
+            },
+
         ]
     });
 }
+
+// Load slots
+
+//flatpickr("#slotDate", {
+//    dateFormat: "Y-m-d",   // ✅ matches your API format
+//    defaultDate: new Date(), // optional: preselect today
+//    onChange: function (selectedDates, dateStr) {
+//        var doctorPId = $('#doctorSlotDetailsModal').data('doctor-id');
+//        loadDoctorSlotsByDate(doctorPId, dateStr); // reload slots for chosen date
+//    }
+//});
+
+flatpickr("#slotDate", {
+    altInput: true,
+    altFormat: "F j, Y",   // e.g. November 30, 2025
+    dateFormat: "Y-m-d"
+});
+
+$('#DCDoctorProfileGrid').on('click', '.viewDoctorSlotBtn', function () {
+    var doctorPId = $(this).data('id');
+    $('#doctorSlotDetailsModal').data('doctor-id', doctorPId);
+
+    var modal = new bootstrap.Modal(document.getElementById('doctorSlotDetailsModal'));
+    modal.show();
+
+    var today = new Date().toISOString().split('T')[0];
+    $('#slotDate').val(today);
+    loadDoctorSlotsByDate(doctorPId, today);
+});
+
+$('#slotDate').on('change', function () {
+    var doctorPId = $('#doctorSlotDetailsModal').data('doctor-id');
+    var selectedDate = $(this).val();
+    loadDoctorSlotsByDate(doctorPId, selectedDate);
+});
+
+function loadDoctorSlotsByDate(doctorPId, selectedDate) {
+    $('#doctorSlots').html('<tr><td colspan="3" class="text-center">Loading...</td></tr>');
+
+    $.ajax({
+        url: "/DCAdmin/GetDoctorSlotsByDateandID",
+        type: "GET",
+        data: { DoctorPId: doctorPId, Date: selectedDate },
+        dataType: "json",
+        success: function (slots) {
+            var rows = '';
+            $.each(slots, function (i, slot) {
+                var slotDate = slot.date.split('T')[0]; // "2025-11-30"
+                if (slot.available === true && slotDate === selectedDate) {
+                    rows += '<tr>' +
+                        //'<td>' + slotDate + '</td>' +
+                        '<td>' + slot.time + '</td>' +
+                        '<td><span class="badge bg-success">Available</span></td>' +
+                        '</tr>';
+                }
+            });
+
+            if (rows === '') {
+                rows = '<tr><td colspan="3" class="text-center text-muted">No available slots for this date</td></tr>';
+            }
+
+            $('#doctorSlots').html(rows);
+        },
+        error: function () {
+            $('#doctorSlots').html('<tr><td colspan="3" class="text-danger text-center">Failed to load slots</td></tr>');
+        }
+    });
+}
+
+
+
+
+$('#DCDoctorProfileGrid').on('click', '.viewDoctorBtn', function () {
+    var doctorPId = $(this).data('id');
+
+    // Show modal
+    var modal = new bootstrap.Modal(document.getElementById('doctorDetailsModal'));
+    modal.show();
+
+    // Load profile info
+    $.get("/DCAdmin/GetDoctorProfileDetails", { DoctorPId: doctorPId }, function (doctor) {
+        $('#doctorName').text(doctor.firstName);
+        $('#doctorLastName').text(doctor.lastName);
+        $('#doctorGender').text(doctor.gender);
+        $('#doctorStudies').text(doctor.studies);
+        $('#doctorPhone').text(doctor.phoneNumber);
+        $('#doctorCategory').text(doctor.consultationCategory);      
+        $('#doctorExperience').text(doctor.experience);
+        $('#doctorEmailAddress').text(doctor.emailAddress);
+        $('#doctorConsultationFees').text(doctor.consultationFees);
+        $('#doctorProficientLanguage').text(doctor.proficientLanguage);
+        $('#doctorDoctorBio').text(doctor.doctorBio);
+        $('#doctorDoctorBio_1').text(doctor.doctorBio_1);
+        $('#doctorDoctorBio_2').text(doctor.doctorBio_2);
+        $('#doctorDoctorProcedure').text(doctor.doctorProcedure);
+        $('#doctorDoctorProcedure_1').text(doctor.doctorProcedure_1);
+        $('#doctorDoctorProcedure_2').text(doctor.doctorProcedure_2);
+        $('#doctorDoctorIntroVideoLink').text(doctor.doctorIntroVideoLink);
+        $('#doctorDoctorLatitude').text(doctor.latitude);
+        $('#doctorDoctorLongitude').text(doctor.longitude);
+        $('#doctorCity').text(doctor.city);
+        $('#doctorAddress_1').text(doctor.address_1);
+        $('#doctorAddress_2').text(doctor.address_2);
+        $('#doctorAboutDoctor').text(doctor.aboutDoctor);
+        $('#doctorStatus').text(doctor.status ? "Online" : "Offline");
+    });
+});
+
+// Confirm button example
+$('#confirmActionBtn').on('click', function () {
+    alert("Confirmed action for doctor profile!");
+    var modal = bootstrap.Modal.getInstance(document.getElementById('doctorDetailsModal'));
+    modal.hide();
+});
+
+
+// Handle View button click
+//$('#DCDoctorProfileGrid').on('click', '.viewDoctorBtn', function () {
+//    var doctorPId = $(this).data('id');
+
+//    $.ajax({
+//        type: "GET",
+//        url: "/DCAdmin/GetDoctorProfileDetails", // ✅ create this API
+//        data: { DoctorPId: doctorPId },
+//        dataType: "json",
+//        success: function (doctor) {
+//            if (doctor) {
+//                // Populate modal fields
+//                $('#doctorName').text(doctor.firstName);
+//                $('#doctorPhone').text(doctor.phoneNumber);
+//                $('#doctorCategory').text(doctor.consultationCategory);
+//                $('#doctorDotp').text(doctor.dcdotp);
+//                $('#doctorStatus').text(doctor.status ? "Online" : "Offline");
+
+//                // Show modal
+//                $('#doctorDetailsModal').modal('show');
+//            } else {
+//                alert("Doctor details not found.");
+//            }
+//        },
+//        error: function () {
+//            alert("Failed to fetch doctor details.");
+//        }
+//    });
+//});
+
+
+
+
+// Example confirm button action
+$('#confirmActionBtn').on('click', function () {
+    alert("Confirmed action for doctor profile!");
+    $('#doctorDetailsModal').modal('hide');
+});
 
 
 $('#DCDoctorProfileGrid').on('change', '.profilestatusCheckbox', function () {
@@ -144,85 +298,6 @@ $('#DCDoctorProfileGrid').on('change', '.profilestatusCheckbox', function () {
         }
     });
 });
-
-
-//$('#DCDoctorProfileGrid').on('change', '.profilestatusCheckbox', function () {
-//    var $toggle = $(this);
-//    var doctorPId = $toggle.data('id');
-//    var status = $toggle.is(':checked');
-
-//    var message = status
-//        ? "Are you sure you want to set this doctor Profile Online?"
-//        : "Are you sure you want to set this doctor Profile Offline?";
-
-//    if (!confirm(message)) {
-//        $toggle.prop('checked', !status);
-//        return;
-//    }
-
-//    $.ajax({
-//        type: "POST",
-//        url: "/DCAdmin/SetDoctorProfileStatus",
-//        data: { DoctorPId: doctorPId, status: status },
-//        dataType: "json",
-//        success: function (response) {
-//            if (response > 0) {
-//                $('#DCDoctorProfileGrid').DataTable().ajax.reload(null, false);
-//            }
-//        },
-//        error: function () {
-//            $toggle.prop('checked', !status);
-//            alert("Failed to update status");
-//        }
-//    });
-//});
-
-
-//function setStatus(doctorPId) {
-//    debugger
-//    var status = $('#rowstatus' + doctorPId).is(':checked');
-//    //var status = $('#checkstatus').prop('checked');
-//    var form_data = new FormData();
-//    form_data.append("status", status);
-//    form_data.append("DoctorPId", doctorPId);
-//    $.ajax({
-//        type: "POST",
-//        url: "/DCAdmin/SetDoctorProfileStatus",
-//        dataType: "JSON",
-//        data: form_data,
-//        cache: false,
-//        contentType: false,
-//        processData: false,
-//        success: function (response) {
-//            if (response > 0) {
-//                window.location.href = 'DCAdmin/DCDoctorProfileGrid'
-//            }
-//        }
-//    });
-
-//}
-function setPriority(specialityID) {
-    debugger
-    var priority = $('#rowpriority' + specialityID).is(':checked');
-    //var status = $('#checkstatus').prop('checked');
-    var form_data = new FormData();
-    form_data.append("Priority", priority);
-    form_data.append("SpecialityID", specialityID);
-    $.ajax({
-        type: "POST",
-        url: "/Admin/SetSpecilizationPriority",
-        dataType: "JSON",
-        data: form_data,
-        cache: false,
-        contentType: false,
-        processData: false,
-        success: function (response) {
-            if (response > 0) {
-                window.location.href = 'Admin/SpecializationsGrid'
-            }
-        }
-    });
-}
 
 
 

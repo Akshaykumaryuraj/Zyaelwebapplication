@@ -114,5 +114,35 @@ namespace ZyaelWeb_Services.DigitalConsultationAdmin
                 return -1;
             }
         }
+
+
+        public async Task<List<ConsultationSlotDateModel>> GetDoctorSlotsByDateandID(int DoctorID,DateTime Date)
+        {
+            try
+            {
+                var result = await _dcadmindal.GetDoctorSlotsByDateandID(DoctorID, Date);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+
+        public async Task<List<ConsultationSlotDateModel>> GetAvailableSlots(int DoctorID)
+        {
+            try
+            {
+                var result = await _dcadmindal.GetAvailableSlots(DoctorID);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+
     }
 }
