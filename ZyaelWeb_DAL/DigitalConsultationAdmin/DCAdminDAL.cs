@@ -288,5 +288,63 @@ namespace ZyaelWeb_DAL.DigitalConsultationAdmin
             }
         }
 
+
+        public async Task<List<UserAppointmentsModel>> GetUserAppointmentByDoctorID(int DoctorID)
+        {
+            try
+            {
+                using (SqlConnection con = GetConnection())
+                {
+                    con.Open();
+                    var Param =
+                            new
+                            {
+                                DoctorID = DoctorID
+
+
+                            };
+                    return (await con.QueryAsync<UserAppointmentsModel>("Sp_GetUserAppointmentByDoctorID", Param, commandType: System.Data.CommandType.StoredProcedure)).ToList();
+
+
+                }
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+
+        public async Task<List<UserAppointmentsModel>> getDCDoctorsDetails(int pageNumber, int pageSize, string sortBy, string sortingOrder, string searchinputText)
+        {
+            try
+            {
+                string search = string.Empty;
+                //if (!string.IsNullOrEmpty(searchinputText))
+                //{
+                //    search = "and (InstitutionName like'%" + searchinputText + "%')";
+                //}
+                using (SqlConnection con = GetConnection())
+                {
+                    con.Open();
+                    var Param =
+                        new
+                        {
+                            pageNumber = pageNumber,
+                            pageSize = pageSize,
+                            sortBy = sortBy,
+                            sortingOrder = sortingOrder,
+                            searchinputText = search
+                        };
+                    return (await con.QueryAsync<UserAppointmentsModel>("SP_GetDoctorsNameWithAppointments", Param, commandType: System.Data.CommandType.StoredProcedure)).ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+
     }
 }

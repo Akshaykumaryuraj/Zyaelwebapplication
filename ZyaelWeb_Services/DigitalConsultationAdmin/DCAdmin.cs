@@ -144,5 +144,33 @@ namespace ZyaelWeb_Services.DigitalConsultationAdmin
         }
 
 
+        public async Task<List<UserAppointmentsModel>> GetUserAppointmentByDoctorID(int DoctorID)
+        {
+            try
+            {
+                var result = await _dcadmindal.GetUserAppointmentByDoctorID(DoctorID);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+
+        public async Task<List<UserAppointmentsModel>> getDCDoctorsDetails(int pageNumber, int pageSize, string sortBy, string sortingOrder, string searchinputText)
+        {
+            try
+            {
+                var result = await _dcadmindal.getDCDoctorsDetails(pageNumber, pageSize, sortBy, sortingOrder, searchinputText);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+
     }
 }

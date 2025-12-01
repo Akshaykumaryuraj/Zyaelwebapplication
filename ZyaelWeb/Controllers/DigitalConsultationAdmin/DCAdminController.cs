@@ -170,6 +170,43 @@ namespace ZyaelWeb.Controllers.DigitalConsultationAdmin
         }
 
 
+
+        [HttpGet]
+        public async Task<IActionResult> GetUserAppointmentByDoctorID(int DoctorID)
+        {
+            List<UserAppointmentsModel> result = new List<UserAppointmentsModel>();
+
+            result = await _dcadmin.GetUserAppointmentByDoctorID(DoctorID);
+            return Json(result);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> getDCDoctorsDetails(int pageNumber, int pageSize)
+        {
+            var recordsTotal = 0;
+            var draw = HttpContext.Request.Form["draw"].FirstOrDefault();
+            string searchinputText = HttpContext.Request.Form["search[value]"].FirstOrDefault();
+            var sortingOrder = HttpContext.Request.Form["order[0][dir]"].FirstOrDefault();
+            var sortBy = Request.Form["columns[" + Request.Form["order[0][column]"] + "][name]"].FirstOrDefault();
+            var start = HttpContext.Request.Form["[start]"].FirstOrDefault();
+            var length = HttpContext.Request.Form["[length]"].FirstOrDefault();
+            List<ZyaelWeb_Models.DigitalConsultationAdmin.UserAppointmentsModel> list = new List<UserAppointmentsModel>();
+
+            list = await _dcadmin.getDCDoctorsDetails(pageNumber, pageSize,sortBy,sortingOrder,searchinputText);
+            if (list != null && list.Count > 0)
+                if (list != null && list.Count > 0)
+                {
+                    recordsTotal = list[0].TotalrowCount;
+                }
+            return Json(new { draw = draw, recordsFiltered = recordsTotal, recordsTotal = recordsTotal, data = list });
+        }
+
+
+        public IActionResult DCDoctorAppointmentGrid()
+        {
+            return View();
+        }
+
     }
 }
 
