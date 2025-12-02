@@ -42,13 +42,8 @@ function BindOnlineAppointmentDetailsGrid(vendor) {
 
         "columns": [
             {
-
-
                 "render": function (data, type, row, meta) {
-                    
-                    var con = '<span>' + count + '</span>';
-                    count = count + 1;
-                    return con;
+                    return meta.row + meta.settings._iDisplayStart + 1;
                 }
             },
 

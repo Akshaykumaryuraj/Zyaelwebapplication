@@ -42,11 +42,8 @@ function BindDCDoctorActivationGrid() {
 
         "columns": [
             {
-                "render": function (data, type, full, meta) {
-
-                    var con = '<span>' + count + '</span>';
-                    count = count + 1;
-                    return con;
+                "render": function (data, type, row, meta) {
+                    return meta.row + meta.settings._iDisplayStart + 1;
                 }
             },
 

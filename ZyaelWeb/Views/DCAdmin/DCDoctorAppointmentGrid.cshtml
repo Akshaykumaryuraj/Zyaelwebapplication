@@ -53,7 +53,7 @@
     <link rel="stylesheet" href="~/assets/vendor/libs/datatables-rowgroup-bs5/rowgroup.bootstrap5.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
 
 
     <!-- Page CSS -->
@@ -409,172 +409,73 @@
                         <div class="modal fade" id="appointmentsModal" tabindex="-1">
                             <div class="modal-dialog modal-lg">
                                 <div class="modal-content">
+
+                                    <!-- Header -->
                                     <div class="modal-header bg-info text-white">
                                         <h5 class="modal-title">Doctor Appointments</h5>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                                     </div>
+
+                                    <!-- Body -->
                                     <div class="modal-body">
-                                        <table id="appointmentsTable" class="table table-bordered">
-                                            <thead>
-                                                <tr><th>ID</th><th>Patient</th><th>Date</th><th>User Selected Slot</th><th>Status</th></tr>
-                                            </thead>
-                                            <tbody></tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                                        <div id="activeFilters" class="mb-2"></div>
 
-
-                        <div class="modal fade" id="doctorDetailsModal" tabindex="-1" aria-hidden="true">
-                            <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
-                                <div class="modal-content animate__animated animate__fadeInDown">
-
-                                    <div class="modal-header bg-primary text-white">
-                                        <h5 class="modal-title">Doctor Details</h5>
-                                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-                                    </div>
-
-                                    <div class="modal-body">
-                                        <!-- Nav tabs -->
-                                        <ul class="nav nav-tabs" id="doctorTabs" role="tablist">
-                                            <li class="nav-item">
-                                                <button class="nav-link active" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profileTab" type="button" role="tab">Profile Info</button>
-                                            </li>
-                                            @*   <li class="nav-item">
-                                            <button class="nav-link viewDoctorBtn" id="slots-tab" data-bs-toggle="tab" data-bs-target="#slotsTab" type="button" role="tab">Available Slots</button>
-                                            </li>
-                                            <li class="nav-item">
-                                            <button class="nav-link" id="history-tab" data-bs-toggle="tab" data-bs-target="#historyTab" type="button" role="tab">History</button>
-                                            </li> *@
-                                        </ul>
-
-                                        <!-- Tab panes -->
-                                        <div class="tab-content mt-3">
-                                            <!-- Profile Info -->
-                                            <!-- Profile Info -->
-                                            <div class="tab-pane fade show active" id="profileTab" role="tabpanel">
-                                                <div class="table-responsive">
-                                                    <table class="table table-bordered table-striped">
-                                                        <tbody>
-                                                            <tr>
-                                                                <th scope="row">First Name</th>
-                                                                <td id="doctorName"></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th scope="row">Last Name</th>
-                                                                <td id="doctorLastName"></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th scope="row">Gender</th>
-                                                                <td id="doctorGender"></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th scope="row">Studies</th>
-                                                                <td id="doctorStudies"></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th scope="row">Phone</th>
-                                                                <td id="doctorPhone"></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th scope="row">EmailAddress</th>
-                                                                <td id="doctorEmailAddress"></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th scope="row">Experience</th>
-                                                                <td id="doctorExperience"></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th scope="row">Consultation Category</th>
-                                                                <td id="doctorCategory"></td>
-                                                            </tr>
-
-                                                            <tr>
-                                                                <th scope="row">Consultation Fees</th>
-                                                                <td id="doctorConsultationFees"></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th scope="row">Proficient Language</th>
-                                                                <td id="doctorProficientLanguage"></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th scope="row">DoctorIntroVideoLink</th>
-                                                                <td id="doctorDoctorIntroVideoLink"></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th scope="row">DoctorBio</th>
-                                                                <td id="doctorDoctorBio"></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th scope="row">DoctorBio_1</th>
-                                                                <td id="doctorDoctorBio_1"></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th scope="row">DoctorBio_2</th>
-                                                                <td id="doctorDoctorBio_2"></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th scope="row">DoctorProcedure</th>
-                                                                <td id="doctorDoctorProcedure"></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th scope="row">DoctorProcedure_1</th>
-                                                                <td id="doctorDoctorProcedure_1"></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th scope="row">DoctorProcedure_2</th>
-                                                                <td id="doctorDoctorProcedure_2"></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th scope="row">DoctorLatitude</th>
-                                                                <td id="doctorDoctorLatitude"></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th scope="row">DoctorLongitude</th>
-                                                                <td id="doctorDoctorLongitude"></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th scope="row">City</th>
-                                                                <td id="doctorCity"></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th scope="row">Address_1</th>
-                                                                <td id="doctorAddress_1"></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th scope="row">Address_2</th>
-                                                                <td id="doctorAddress_2"></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th scope="row">AboutDoctor</th>
-                                                                <td id="doctorAboutDoctor"></td>
-                                                            </tr>
-
-                                                            <tr>
-                                                                <th scope="row">Status</th>
-                                                                <td id="doctorStatus"></td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-                                                </div>
+                                        <!-- Filters -->
+                                        <div class="row g-3 mb-3 align-items-end">
+                                            <div class="col-md-3">
+                                                <label for="statusFilter" class="form-label">Status</label>
+                                                <select id="statusFilter" class="form-select">
+                                                    <option value="">All</option>
+                                                    <option value="In-Progress">In-Progress</option>
+                                                    <option value="Accepted">Accepted</option>
+                                                    <option value="Reject">Reject</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <label for="dateFilter" class="form-label">Appointment Date</label>
+                                                <input type="text" id="dateFilter" class="form-control" placeholder="YYYY-MM-DD" />
+                                            </div>
+                                            <div class="col-md-3">
+                                                <label for="searchFilter" class="form-label">Search</label>
+                                                <input type="text" id="searchFilter" class="form-control" placeholder="Search patient, ID, slot..." />
+                                            </div>
+                                            @* <div class="col-md-3 text-end">
+                                                <button id="resetFilters" class="btn btn-outline-secondary w-100">Reset</button>
+                                            </div> *@
+                                            <div class="col-md-3 text-end">
+                                                <button id="resetFilters" class="btn btn-outline-secondary w-100">
+                                                    <i class="bi bi-arrow-clockwise me-1"></i> Reset
+                                                </button>
                                             </div>
 
-                                            <!-- History -->
-                                            <div class="tab-pane fade" id="historyTab" role="tabpanel">
-                                                <div id="doctorHistory">Loading history...</div>
-                                            </div>
+                                        </div>
+                                        <!-- Filters -->
+
+                                       
+
+                                        <!-- Table -->
+                                        <div class="table-responsive">
+                                            <table id="appointmentsTable" class="table table-bordered">
+                                                <thead class="table-light">
+                                                    <tr>
+                                                        <th>ID</th>
+                                                        <th>Patient</th>
+                                                        <th>Date</th>
+                                                        <th>User Selected Slot</th>
+                                                        <th>Status</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody></tbody>
+                                            </table>
                                         </div>
                                     </div>
 
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                    </div>
-
                                 </div>
                             </div>
                         </div>
 
+
+                       
                         <div class="modal fade" id="doctorSlotDetailsModal" tabindex="-1" aria-hidden="true">
                             <div class="modal-dialog modal-sm">
                                 <div class="modal-content">
@@ -588,7 +489,7 @@
 
                                             <table class="table table-hover table-sm">
                                                 <thead class="table-light">
-                                                    <input type="text" id="slotDate" class="form-control" placeholder="YYYY-MM-DD" />
+                                                    <input type="text" id="appointmentDate" class="form-control" placeholder="YYYY-MM-DD" />
 
                                                     <tr>
                                                         @*                                                         <th>Date</th>
@@ -731,18 +632,51 @@
     <script src="~/assets/js/gridjs/DCDoctorAppointmentGrid.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
     <script>
-        flatpickr("#slotDate", {
+
+        // initialize Flatpickr on the date input
+        flatpickr("#dateFilter", {
             dateFormat: "Y-m-d",
             defaultDate: new Date(),
-            appendTo: document.body,   // ✅ ensures calendar is not hidden by parent overflow
-            onChange: function (selectedDates, dateStr) {
-                var doctorPId = $('#doctorSlotDetailsModal').data('doctor-id');
-                loadDoctorSlotsByDate(doctorPId, dateStr);
+            appendTo: document.body,   // ensures calendar shows above modal
+            onChange: function () {
+                loadAppointments();   // reload appointments when date changes
             }
         });
 
     </script>
+   @*  <script>
+        $('#statusFilter').off('change').on('change', loadAppointments);
+
+        flatpickr("#dateFilter", {
+            dateFormat: "Y-m-d",
+            defaultDate: new Date(),
+            appendTo: document.body,   // ensures calendar shows above modal
+            onChange: function () {
+                loadAppointments();   // reload appointments when date changes
+            }
+        });
+        </script> *@
+
+        <script>
+        //auto-refresh when search changes
+        $('#searchFilter').off('keyup').on('keyup', function (e) {
+           if (e.keyCode === 13 || $(this).val().length >= 3) {
+               loadAppointments();
+           }
+        });
+        </script>
+        <script>
+        $('#resetFilters').off('click').on('click', function () {
+            $('#statusFilter').val('');
+            $('#dateFilter').val('');
+            $('#searchFilter').val('');
+            $('#activeFilters').html('<span class="text-muted">No filters applied</span>');
+            loadAppointments();
+        });
+        </script>
+  
 
 </body>
 

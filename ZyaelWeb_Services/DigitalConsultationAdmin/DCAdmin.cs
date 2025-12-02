@@ -144,11 +144,11 @@ namespace ZyaelWeb_Services.DigitalConsultationAdmin
         }
 
 
-        public async Task<List<UserAppointmentsModel>> GetUserAppointmentByDoctorID(int DoctorID)
+        public async Task<List<UserAppointmentsModel>> GetUserAppointmentByDoctorID(int DoctorID, string status, string AppointmentDate,string SearchText)
         {
             try
             {
-                var result = await _dcadmindal.GetUserAppointmentByDoctorID(DoctorID);
+                var result = await _dcadmindal.GetUserAppointmentByDoctorID(DoctorID, status, AppointmentDate, SearchText);
                 return result;
             }
             catch (Exception ex)

@@ -42,11 +42,8 @@ function BindDCDoctorAppointmentGrid() {
         "columns": [
 
             {
-                "render": function (data, type, full, meta) {
-
-                    var con = '<span>' + count + '</span>';
-                    count = count + 1;
-                    return con;
+                "render": function (data, type, row, meta) {
+                    return meta.row + meta.settings._iDisplayStart + 1;
                 }
             },
 
@@ -80,77 +77,116 @@ function BindDCDoctorAppointmentGrid() {
 }
 
 
-
-//$('#DCDoctorAppointmentGrid').on('click', '.doctorNameLink', function (e) {
-//    e.preventDefault();
-
-//    // Always use attr() to get the exact value from DOM
-//    var doctorID = $(this).attr('data-id');
-//    console.log("DoctorID clicked:", doctorID);
-
-//    $.ajax({
-//        url: '/DCAdmin/GetUserAppointmentByDoctorID/' + doctorID, // build URL correctly
-//        type: 'GET',
-//        dataType: 'json',
-//        success: function (data) {
-//            var rows = data.map(a =>
-//                `<tr>
-//                    <td>${a.userRandomID}</td>
-//                    <td>${a.userID}</td>
-//                    <td>${a.date}</td>
-//                    <td>${a.userSelectedSlot}</td>
-//                </tr>`
-//            ).join('');
-
-//            $('#appointmentsTable tbody').html(rows);
-//            $('#appointmentsModal').modal('show');
-//        },
-//        error: function (xhr, status, error) {
-//            console.error("Error:", error);
-//            $('#appointmentsTable tbody').html(
-//                '<tr><td colspan="4" class="text-center text-danger">Failed to load appointments</td></tr>'
-//            );
-//        }
-//    });
-//});
-
-
-
-
 $('#DCDoctorAppointmentGrid').on('click', '.doctorNameLink', function (e) {
     e.preventDefault();
 
-    var doctorID = $(this).attr('data-id'); // "4"
-    console.log("DoctorID:", doctorID);
+    var doctorID = $(this).attr('data-id');
+    $('#appointmentsModal').data('doctor-id', doctorID).modal('show');
 
-    $.ajax({
-        url: '/DCAdmin/GetUserAppointmentByDoctorID',
-        type: 'GET',
-        data: { DoctorID: doctorID }, // pass as query string
-        dataType: 'json',
-        success: function (data) {
-            var rows = data.map(a =>
-                `<tr>
-                    <td>${a.userRandomID}</td>
-                    <td>${a.patientName}</td>
-                    <td>${a.appointmentDate}</td>
-                    <td>${a.userSelectedSlot}</td>
-                    <td>${a.status}</td>
+    function loadAppointments() {
+        var status = $('#statusFilter').val();
+        var date = $('#dateFilter').val();
+        var search = $('#searchFilter').val();
+
+        // Build filter badges
+        var badges = [];
+        if (status) badges.push(`<span class="badge bg-info me-1">Status: ${status}</span>`);
+        if (date) badges.push(`<span class="badge bg-warning text-dark me-1">Date: ${date}</span>`);
+        if (search) badges.push(`<span class="badge bg-success me-1">Search: ${search}</span>`);
+
+        $('#activeFilters').html(badges.join(' ') || '<span class="text-muted">No filters applied</span>');
+
+        // AJAX call
+        $.ajax({
+            url: '/DCAdmin/GetUserAppointmentByDoctorID',
+            type: 'GET',
+            data: { DoctorID: doctorID, Status: status, AppointmentDate: date, SearchText: search },
+            dataType: 'json',
+            success: function (data) {
+                var rows = data.map(a =>
+                    `<tr>
+                    <td>${a.userRandomID ?? ''}</td>
+                    <td>${a.patientName ?? ''}</td>
+                    <td>${a.appointmentDate ?? ''}</td>
+                    <td>${a.userSelectedSlot ?? ''}</td>
+                    <td>${a.status ?? ''}</td>
                 </tr>`
-            ).join('');
+                ).join('');
+                $('#appointmentsTable tbody').html(rows || '<tr><td colspan="5" class="text-center text-muted">No appointments found</td></tr>');
+            },
+            error: function () {
+                $('#appointmentsTable tbody').html('<tr><td colspan="5" class="text-center text-danger">Failed to load appointments</td></tr>');
+            }
+        });
+    }
 
-            $('#appointmentsTable tbody').html(rows);
-            $('#appointmentsModal').modal('show');
-        },
-        error: function (xhr, status, error) {
-            console.error("Error:", error);
-            $('#appointmentsTable tbody').html(
-                '<tr><td colspan="4" class="text-center text-danger">Failed to load appointments</td></tr>'
-            );
+    // initial load
+    loadAppointments();
+
+    // filters
+    $('#statusFilter').off('change').on('change', loadAppointments);
+    flatpickr("#dateFilter", { dateFormat: "Y-m-d", onChange: loadAppointments });
+    $('#searchFilter').off('input').on('input', function () {
+        var val = $(this).val();
+        if (val.length === 0 || val.length >= 3) {
+            loadAppointments();
         }
+    });
+
+    // reset button
+    $('#resetFilters').off('click').on('click', function () {
+        $('#statusFilter').val('');
+        $('#dateFilter').val('');
+        $('#searchFilter').val('');
+        $('#activeFilters').html('<span class="text-muted">No filters applied</span>');
+        loadAppointments();
     });
 });
 
 
+//$('#DCDoctorAppointmentGrid').on('click', '.doctorNameLink', function (e) {
+//    e.preventDefault();
 
+//    var doctorID = $(this).attr('data-id');
+//    $('#appointmentsModal').data('doctor-id', doctorID).modal('show');
+
+//    function loadAppointments() {
+//        var status = $('#statusFilter').val();
+//        var date = $('#dateFilter').val();
+//        var search = $('#searchFilter').val();
+
+//        $.ajax({
+//            url: '/DCAdmin/GetUserAppointmentByDoctorID',
+//            type: 'GET',
+//            data: { DoctorID: doctorID, Status: status, AppointmentDate: date, SearchText: search },
+//            success: function (data) {
+//                var rows = data.map(a =>
+//                    `<tr>
+//                        <td>${a.userRandomID ?? ''}</td>
+//                        <td>${a.patientName ?? ''}</td>
+//                        <td>${a.appointmentDate ?? ''}</td>
+//                        <td>${a.userSelectedSlot ?? ''}</td>
+//                        <td>${a.status ?? ''}</td>
+//                    </tr>`
+//                ).join('');
+//                $('#appointmentsTable tbody').html(rows || '<tr><td colspan="5" class="text-center text-muted">No appointments found</td></tr>');
+//            }
+//        });
+//    }
+
+//    // initial load
+//    loadAppointments();
+
+//    // filters
+//    $('#statusFilter').off('change').on('change', loadAppointments);
+//    flatpickr("#dateFilter", { dateFormat: "Y-m-d", onChange: loadAppointments });
+
+//    // search
+//    $('#searchFilter').off('input').on('input', function () {
+//        var val = $(this).val();
+//        if (val.length === 0 || val.length >= 3) {
+//            loadAppointments();
+//        }
+//    });
+//});
 

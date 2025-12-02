@@ -289,7 +289,7 @@ namespace ZyaelWeb_DAL.DigitalConsultationAdmin
         }
 
 
-        public async Task<List<UserAppointmentsModel>> GetUserAppointmentByDoctorID(int DoctorID)
+        public async Task<List<UserAppointmentsModel>> GetUserAppointmentByDoctorID(int DoctorID, string status, string AppointmentDate,string SearchText)
         {
             try
             {
@@ -299,7 +299,10 @@ namespace ZyaelWeb_DAL.DigitalConsultationAdmin
                     var Param =
                             new
                             {
-                                DoctorID = DoctorID
+                                DoctorID = DoctorID,
+                                status=status,
+                                AppointmentDate=AppointmentDate,
+                                SearchText= SearchText
 
 
                             };

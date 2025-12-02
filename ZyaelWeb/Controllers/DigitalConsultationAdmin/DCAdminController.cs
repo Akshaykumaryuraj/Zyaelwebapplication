@@ -172,11 +172,11 @@ namespace ZyaelWeb.Controllers.DigitalConsultationAdmin
 
 
         [HttpGet]
-        public async Task<IActionResult> GetUserAppointmentByDoctorID(int DoctorID)
+        public async Task<IActionResult> GetUserAppointmentByDoctorID(int DoctorID,string status,string AppointmentDate,string SearchText)
         {
             List<UserAppointmentsModel> result = new List<UserAppointmentsModel>();
 
-            result = await _dcadmin.GetUserAppointmentByDoctorID(DoctorID);
+            result = await _dcadmin.GetUserAppointmentByDoctorID(DoctorID,status,AppointmentDate, SearchText);
             return Json(result);
         }
 
