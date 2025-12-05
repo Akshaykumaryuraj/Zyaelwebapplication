@@ -676,7 +676,27 @@
             loadAppointments();
         });
         </script>
-  
+  <script>
+        let socket = new WebSocket("wss://zyael-api.azurewebsites.net/ws?UserID=dashboard");
+
+        socket.onmessage = function (event) {
+            if (event.data.startsWith("OrderUpdated")) {
+                $('#DCDoctorAppointmentGrid').DataTable().ajax.reload(null, false);
+            }
+        };
+  </script>
+
+    <script>
+        const socket = new WebSocket("ws://localhost:5000/ws");
+
+        socket.onmessage = function (event) {
+            console.log("Update received:", event.data);
+
+            // Refresh DataTable when update arrives
+            $('#DCDoctorAppointmentGrid').DataTable().ajax.reload(null, false);
+        };
+    </script>
+
 
 </body>
 

@@ -73,6 +73,27 @@ namespace ZyaelWeb
                     name: "default",
                     pattern: "{controller=AdminLogin}/{action=AdminLogin}/{id?}");
             });
-        }
-    }
+
+			app.UseWebSockets();
+			app.UseRouting();
+
+			app.UseEndpoints(endpoints =>
+			{
+				endpoints.MapControllers();
+				endpoints.Map("/ws", async context =>
+				{
+					if (context.WebSockets.IsWebSocketRequest)
+					{
+						var socket = await context.WebSockets.AcceptWebSocketAsync();
+						await WebSocketHandler.Handle(context, socket);
+					}
+					else
+					{
+						context.Response.StatusCode = 400;
+					}
+				});
+			});
+
+		}
+	}
 }

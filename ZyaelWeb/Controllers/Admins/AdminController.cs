@@ -1,9 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using ZyaelWeb_Models.InternalDoctor;
 using ZyaelWeb_Models.Logins;
 using ZyaelWeb_Models.Admins;
 using ZyaelWeb_Services.Admins;
-using ZyaelWeb_Services.InternalDoctor;
 using IHostingEnvironment = Microsoft.AspNetCore.Hosting.IHostingEnvironment;
 using System.Net.Http.Headers;
 

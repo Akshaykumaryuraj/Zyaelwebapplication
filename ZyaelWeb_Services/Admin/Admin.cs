@@ -6,10 +6,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ZyaelWeb_DAL.Admin;
-using ZyaelWeb_DAL.InternalDoctor;
 using ZyaelWeb_DAL.Logins;
 using ZyaelWeb_Models.Admins;
-using ZyaelWeb_Models.InternalDoctor;
 using ZyaelWeb_Models.Logins;
 
 namespace ZyaelWeb_Services.Admins

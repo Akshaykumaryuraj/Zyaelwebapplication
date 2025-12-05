@@ -290,14 +290,17 @@
 
 
                                             <div class="row mb-3">
-                                                <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">First Name</label>
+                                                <label class="col-sm-2 col-form-label">First Name</label>
                                                 <div class="col-sm-10">
                                                     <div class="input-group input-group-merge">
-                                                        <span id="basic-icon-default-fullname2" class="input-group-text"><i class="bx bx-user"></i></span>
-                                                        @Html.TextBoxFor(model => model.FirstName, new { @class = "form-control cleardata", @id = "", @name = "", @placeholder = "" })
+                                                        <span class="input-group-text"><i class="bx bx-user"></i></span>
+                                                        @Html.TextBoxFor(model => model.FirstName, new { @class = "form-control cleardata", placeholder = "Enter first name" })
                                                     </div>
+                                                    @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+
                                                 </div>
                                             </div>
+
                                             <div class="row mb-3">
                                                 <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">LastName</label>
                                                 <div class="col-sm-10">
@@ -351,6 +354,8 @@
                                                         <span id="basic-icon-default-fullname2" class="input-group-text"><i class="bx bx-user"></i></span>
                                                         @Html.TextBoxFor(model => model.EmailAddress, new { @class = "form-control cleardata", @id = "", @name = "", @placeholder = "" })
                                                     </div>
+                                                    @Html.ValidationMessageFor(model => model.EmailAddress, "", new { @class = "text-danger" })
+
                                                 </div>
                                             </div>
                                             <div class="row mb-3">
@@ -360,6 +365,8 @@
                                                         <span id="basic-icon-default-fullname2" class="input-group-text"><i class="bx bx-user"></i></span>
                                                         @Html.TextBoxFor(model => model.Experience, new { @class = "form-control cleardata", @id = "", @name = "", @placeholder = "" })
                                                     </div>
+                                                    @Html.ValidationMessageFor(model => model.Experience, "", new { @class = "text-danger" })
+
                                                 </div>
                                             </div>
                                             <div class="row mb-3">
@@ -396,6 +403,8 @@
                                                         <span id="basic-icon-default-fullname2" class="input-group-text"><i class="bx bx-user"></i></span>
                                                         @Html.TextBoxFor(model => model.ConsultationFees, new { @class = "form-control cleardata", @id = "", @name = "", @placeholder = "" })
                                                     </div>
+                                                    @Html.ValidationMessageFor(model => model.ConsultationFees, "", new { @class = "text-danger" })
+
                                                 </div>
                                             </div>
                                             <div class="row mb-3">
@@ -609,6 +618,18 @@
     *@
     <!-- Main JS -->
     <script src="../../assets/js/main.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.12/jquery.validate.unobtrusive.min.js"></script>
+
+    <script>
+        // Enable validation on keyup (every keystroke)
+        $.validator.setDefaults({
+            onkeyup: function (element) {
+                $(element).valid();
+            }
+        });
+    </script>
 
 
     <!-- Page JS -->

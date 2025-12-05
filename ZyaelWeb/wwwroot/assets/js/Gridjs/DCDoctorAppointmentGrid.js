@@ -190,3 +190,7 @@ $('#DCDoctorAppointmentGrid').on('click', '.doctorNameLink', function (e) {
 //    });
 //});
 
+
+
+
+

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,11 +18,17 @@ namespace ZyaelWeb_Models.DigitalConsultationAdmin
         public int DoctorID { get; set; }
         public int DCDOTP { get; set; }
 
+        [Required(ErrorMessage = "First Name is required")]
+        [StringLength(50, ErrorMessage = "First Name cannot exceed 50 characters")]
+        [RegularExpression(@"^[a-zA-Z\s]+$", ErrorMessage = "Only letters are allowed")]
         public String FirstName { get; set; }
+
         public String LastName { get; set; }
         public String Gender { get; set; }
         public String Studies { get; set; }
-        public String Experience { get; set; }
+        [Required(ErrorMessage = "Experience is required")]
+        [Range(0, 50, ErrorMessage = "Experience must be between 0 and 50 years")]
+        public int Experience { get; set; }
         public String EmailAddress { get; set; }
         public Int64 PhoneNumber { get; set; }
         public String ConsultationCategory { get; set; }

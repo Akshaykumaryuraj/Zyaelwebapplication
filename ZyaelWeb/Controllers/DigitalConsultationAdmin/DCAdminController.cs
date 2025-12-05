@@ -207,6 +207,17 @@ namespace ZyaelWeb.Controllers.DigitalConsultationAdmin
             return View();
         }
 
-    }
+
+		[HttpPost]
+		public async Task<IActionResult> SetDoctorOrderAccept_RejectStatus(string Status, int UserID, int DoctorID, int UAID)
+		{
+			// update DB logic here...
+
+			await WebSocketHandler.BroadcastAsync($"OrderUpdated:{UAID}:{Status}");
+			return Ok(1);
+		}
+
+
+	}
 }
 

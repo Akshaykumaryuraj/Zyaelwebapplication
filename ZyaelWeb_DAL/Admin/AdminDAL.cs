@@ -8,7 +8,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ZyaelWeb_Models.Admins;
-using ZyaelWeb_Models.InternalDoctor;
 using ZyaelWeb_Models.Logins;
 using ZyaelWebServices.DAL;
 
